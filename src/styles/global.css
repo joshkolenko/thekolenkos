@@ -1,11 +1,12 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-body: 'Playfair Display', serif;
-  --font-heading: 'Metal', sans-serif;
+  --font-body: 'Playfair Variable', serif;
+  --font-heading: 'Playball', sans-serif;
 }
 
 body {
+  font-family: var(--font-body);
   margin: 0;
 }
 

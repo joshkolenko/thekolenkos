@@ -1,11 +1,11 @@
 ---
 // Supports weights 400-900
-import '@fontsource-variable/playfair-display';
-import '@fontsource/metal';
+import '@fontsource-variable/playfair';
+import '@fontsource/playball';
 
 import '../styles/global.css';
 
-import metalWoff2 from '@fontsource/metal/files/metal-latin-400-normal.woff2';
+import playballWoff2 from '@fontsource/playball/files/playball-latin-400-normal.woff2';
 
 const { title, description } = Astro.props;
 ---
@@ -18,7 +18,7 @@ const { title, description } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <title>{title}</title>
-    <link rel="preload" as="font" type="font/woff2" href={metalWoff2} crossorigin="anonymous" />
+    <link rel="preload" as="font" type="font/woff2" href={playballWoff2} crossorigin="anonymous" />
   </head>
   <body>
     <slot />
