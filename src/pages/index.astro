@@ -10,23 +10,24 @@ const year = date.getFullYear();
 ---
 
 <BaseLayout title="The Kolenkos" description="Taylor and Josh's wedding">
-  <ImageBackground>
-    <div class="px-5 py-12 h-screen flex flex-col items-center text-center text-white">
-      <h1 class="text-[5rem] mt-84 mb-2 font-heading tracking-tight">Joshua & Taylor</h1>
-      <p class="font-body text-5xl tracking-wider mb-16">
-        <span>{month}</span>
-        <span class="mx-2">.</span>
-        <span>{day}</span>
-        <span class="mx-2">.</span>
-        <span>{year}</span>
-      </p>
-      <a
-        href="/rsvp"
-        class="cursor-pointer mb-auto border-white bg-white/20 border-2 px-16 py-5 font-body font-bold text-2xl backdrop-blur-xs hover:bg-white hover:text-black transition-colors"
-      >
-        RSVP
-      </a>
-      <Countdown client:only date={date} />
-    </div>
-  </ImageBackground>
+  <ImageBackground />
+  <div class="px-5 py-16 min-h-screen flex flex-col items-center text-center text-white">
+    <h1 class="text-5xl md:text-[5rem] mt-auto md:mt-84 mb-4 font-heading tracking-tight">
+      Joshua & Taylor
+    </h1>
+    <p class="font-body text-3xl md:text-5xl tracking-wider mb-16">
+      <span>{month}</span>
+      <span class="mx-2">.</span>
+      <span>{day}</span>
+      <span class="mx-2">.</span>
+      <span>{year}</span>
+    </p>
+    <a
+      href="/rsvp"
+      class="cursor-pointer mb-auto border-white bg-white/20 border-2 px-16 py-5 font-body font-bold text-2xl backdrop-blur-xs hover:bg-white hover:text-black transition-colors"
+    >
+      RSVP
+    </a>
+    <Countdown client:only date={date} />
+  </div>
 </BaseLayout>

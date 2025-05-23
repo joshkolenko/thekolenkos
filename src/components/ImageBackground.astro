@@ -3,13 +3,13 @@ import { Image } from 'astro:assets';
 import background from '../images/background.jpg';
 ---
 
-<div class="relative w-screen h-screen overflow-hidden">
+<div class="absolute inset-0 object-cover w-full min-h-screen h-full -z-10">
   <Image
     src={background}
     alt="Joshua and Taylor Kolenkos"
-    class="absolute inset-0 object-cover w-full h-full -z-10"
+    class="object-cover w-full h-full"
+    loading="eager"
+    priority={true}
   />
-  <div class="absolute inset-0 bg-black/30">
-    <slot />
-  </div>
+  <div class="absolute inset-0 bg-black/30"></div>
 </div>
