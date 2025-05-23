@@ -9,6 +9,25 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.8.0"
+    "@astrojs/node": "^9.2.2",
+    "@astrojs/react": "^4.3.0",
+    "@clerk/astro": "^2.8.0",
+    "@fontsource-variable/playfair-display": "^5.2.5",
+    "@fontsource/metal": "^5.2.5",
+    "@neondatabase/serverless": "^1.0.0",
+    "@tailwindcss/vite": "^4.1.7",
+    "@types/react": "^19.1.5",
+    "@types/react-dom": "^19.1.5",
+    "astro": "^5.8.0",
+    "dotenv": "^16.5.0",
+    "drizzle-orm": "^0.43.1",
+    "react": "^19.1.0",
+    "react-countdown": "^2.3.6",
+    "react-dom": "^19.1.0",
+    "tailwindcss": "^4.1.7"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.31.1",
+    "tsx": "^4.19.4"
   }
 }

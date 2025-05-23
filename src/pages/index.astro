@@ -1,16 +1,32 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Countdown from '../components/Countdown';
+import ImageBackground from '../components/ImageBackground.astro';
 
+const date = new Date('2026-09-17T16:00:00Z');
+const month = date.getMonth() + 1;
+const day = date.getDate();
+const year = date.getFullYear();
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="The Kolenkos" description="Taylor and Josh's wedding">
+  <ImageBackground>
+    <div class="px-5 py-12 h-screen flex flex-col items-center text-center text-white">
+      <h1 class="text-[5rem] mt-84 mb-2 font-heading tracking-tight">Joshua & Taylor</h1>
+      <p class="font-body text-5xl tracking-wider mb-16">
+        <span>{month}</span>
+        <span class="mx-2">.</span>
+        <span>{day}</span>
+        <span class="mx-2">.</span>
+        <span>{year}</span>
+      </p>
+      <a
+        href="/rsvp"
+        class="cursor-pointer mb-auto border-white bg-white/20 border-2 px-16 py-5 font-body font-bold text-2xl backdrop-blur-xs hover:bg-white hover:text-black transition-colors"
+      >
+        RSVP
+      </a>
+      <Countdown client:only date={date} />
+    </div>
+  </ImageBackground>
+</BaseLayout>

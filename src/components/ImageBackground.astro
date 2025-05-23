@@ -1,0 +1,15 @@
+---
+import { Image } from 'astro:assets';
+import background from '../images/background.jpg';
+---
+
+<div class="relative w-screen h-screen overflow-hidden">
+  <Image
+    src={background}
+    alt="Joshua and Taylor Kolenkos"
+    class="absolute inset-0 object-cover w-full h-full -z-10"
+  />
+  <div class="absolute inset-0 bg-black/30">
+    <slot />
+  </div>
+</div>

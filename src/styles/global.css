@@ -1,0 +1,10 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-body: 'Playfair Display', serif;
+  --font-heading: 'Metal', sans-serif;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+}
