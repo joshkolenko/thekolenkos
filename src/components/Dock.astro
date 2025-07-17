@@ -11,7 +11,7 @@ const pages = [
   {
     pages.map(page => {
       return (
-        <a href="/rsvp" class={`dock-item ${active === page.name ? 'dock-item-active' : ''}`}>
+        <a href={page.href} class={`dock-item ${active === page.name ? 'dock-active' : ''}`}>
           <i class={`ph-fill ${page.icon}`} />
           <span class="dock-label">{page.name}</span>
         </a>

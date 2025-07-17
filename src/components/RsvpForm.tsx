@@ -43,6 +43,7 @@ export default function RsvpForm() {
     },
     onSubmit: async ({ value }) => {
       console.log(value);
+      alert('This form is not functional yet. It is just a demo. :)');
       return;
       try {
         await fetch('/api/submit', {
