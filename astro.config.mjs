@@ -8,7 +8,12 @@ import react from '@astrojs/react';
 
 export default defineConfig({
   integrations: [react({ experimentalReactChildren: true })],
-  adapter: vercel(),
+  adapter: vercel({
+    imageService: true,
+    webAnalytics: {
+      enabled: true,
+    },
+  }),
   output: 'server',
   devToolbar: {
     enabled: false,

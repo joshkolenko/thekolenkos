@@ -8,8 +8,6 @@ export const onRequest = defineMiddleware(async (context, next) => {
   const ignoredPaths = ['/api/code', '/api/submit', '/.well-known', '/favicon.ico'];
   const cookies = cookie.parse(context.request.headers.get('cookie') || '');
 
-  console.log(cookies.code);
-
   if (
     context.url.pathname === '/code' ||
     ignoredPaths.some(path => context.url.pathname.startsWith(path)) ||
