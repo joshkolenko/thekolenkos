@@ -15,12 +15,12 @@ export default function Countdown({ date }: { date: Date }) {
       <ReactCountdown
         date={date}
         renderer={({ days, hours, minutes, seconds }) => (
-          <p className="font-body flex gap-6 md:gap-8 relative top-0.5">
+          <div className="font-body flex gap-6 md:gap-8 relative top-0.5">
             <DateSegment value={days} label="days" />
             <DateSegment value={hours} label="hours" />
             <DateSegment value={minutes} label="minutes" />
             <DateSegment value={seconds} label="seconds" />
-          </p>
+          </div>
         )}
       />
     </div>

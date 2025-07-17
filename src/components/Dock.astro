@@ -1,0 +1,21 @@
+---
+const { active } = Astro.props;
+
+const pages = [
+  { name: 'Home', href: '/', icon: 'ph-house' },
+  { name: 'RSVP', href: '/rsvp', icon: 'ph-envelope' },
+];
+---
+
+<div class="dock md:dock-xl bg-neutral text-neutral-content">
+  {
+    pages.map(page => {
+      return (
+        <a href="/rsvp" class={`dock-item ${active === page.name ? 'dock-item-active' : ''}`}>
+          <i class={`ph-fill ${page.icon}`} />
+          <span class="dock-label">{page.name}</span>
+        </a>
+      );
+    })
+  }
+</div>

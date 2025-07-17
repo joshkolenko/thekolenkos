@@ -5,5 +5,7 @@ export const rsvpTable = pgTable('rsvp', {
   name: varchar({ length: 255 }).notNull(),
   email: varchar({ length: 255 }).notNull(),
   phone: varchar({ length: 255 }).notNull(),
-  meal: varchar({ length: 255 }).notNull(),
+  guests: varchar({ length: 255 }).notNull(),
 });
+
+export type Rsvp = Omit<typeof rsvpTable.$inferSelect, 'id'>;

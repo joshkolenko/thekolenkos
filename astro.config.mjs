@@ -7,9 +7,12 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@astrojs/react';
 
 export default defineConfig({
-  integrations: [clerk(), react({ experimentalReactChildren: true })],
+  integrations: [react({ experimentalReactChildren: true })],
   adapter: vercel(),
   output: 'server',
+  devToolbar: {
+    enabled: false,
+  },
   vite: {
     plugins: [tailwindcss()],
   },
