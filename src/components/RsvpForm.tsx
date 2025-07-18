@@ -63,7 +63,8 @@ export default function RsvpForm() {
           alert('Error submitting form: ' + (data.error || 'Unknown error'));
         }
       } catch (error) {
-        alert('Error submitting form: ' + error);
+        console.error('Error submitting form:', error);
+        alert('Error submitting form');
       }
     },
   });
