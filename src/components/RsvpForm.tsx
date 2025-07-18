@@ -244,14 +244,14 @@ export default function RsvpForm() {
               </>
             )}
           />
-          <button type="submit" className="btn btn-lg btn-accent mt-2">
-            {form.state.isSubmitting ? (
-              <i className="ph-bold ph-spinner ph-spin mr-2" />
-            ) : (
-              <i className="ph-bold ph-check mr-2" />
+          <form.Subscribe
+            selector={state => [state.canSubmit, state.isSubmitting]}
+            children={([canSubmit, isSubmitting]) => (
+              <button type="submit" className="btn btn-lg btn-accent mt-2" disabled={!canSubmit}>
+                {isSubmitting ? <div className="loading loading-sm loading-spinner" /> : 'Submit'}
+              </button>
             )}
-            Submit
-          </button>
+          />
         </div>
       </form>
     </>
