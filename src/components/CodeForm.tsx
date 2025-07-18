@@ -62,7 +62,7 @@ export default function RsvpForm() {
                   value={field.state.value}
                   className="input input-lg w-full"
                   onChange={e => field.handleChange(e.target.value)}
-                  type="text"
+                  type="password"
                   required
                 />
                 <FormError
