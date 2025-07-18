@@ -10,10 +10,10 @@ export default function RsvpForm() {
 
   const form = useForm({
     defaultValues: {
-      name: 'Josh Kolenko',
-      email: 'jkolenko@proton.me',
-      phone: '6164469976',
-      guests: 'Taylor Diaz, Eevee Kolenko',
+      name: '',
+      email: '',
+      phone: '',
+      guests: '',
       attending: true,
     } as Rsvp,
     validators: {

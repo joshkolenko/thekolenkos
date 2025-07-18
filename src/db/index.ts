@@ -3,8 +3,6 @@ import { rsvpTable, type Rsvp } from './schema';
 
 import 'dotenv/config';
 
-console.log(process.env.DATABASE_URL);
-
 export const db = drizzle(process.env.DATABASE_URL!);
 
 export async function createRsvp(rsvp: Rsvp) {
