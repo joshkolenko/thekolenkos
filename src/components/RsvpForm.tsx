@@ -1,16 +1,20 @@
 import type { Rsvp } from '../db/schema';
 
+import { useState } from 'react';
 import { useForm } from '@tanstack/react-form';
 
 import FormError from './FormError';
 
 export default function RsvpForm() {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   const form = useForm({
     defaultValues: {
-      name: '',
-      email: '',
-      phone: '',
-      guests: '',
+      name: 'Josh Kolenko',
+      email: 'jkolenko@proton.me',
+      phone: '6164469976',
+      guests: 'Taylor Diaz, Eevee Kolenko',
+      attending: true,
     } as Rsvp,
     validators: {
       onSubmit: ({ value }) => {
@@ -42,11 +46,8 @@ export default function RsvpForm() {
       },
     },
     onSubmit: async ({ value }) => {
-      console.log(value);
-      alert('This form is not functional yet. It is just a demo. :)');
-      return;
       try {
-        await fetch('/api/submit', {
+        const result = await fetch('/api/rsvp', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -54,7 +55,13 @@ export default function RsvpForm() {
           body: JSON.stringify(value),
         });
 
-        alert('Form submitted successfully!');
+        const data = await result.json();
+
+        if (data.success) {
+          setIsSubmitted(true);
+        } else {
+          alert('Error submitting form: ' + (data.error || 'Unknown error'));
+        }
       } catch (error) {
         alert('Error submitting form: ' + error);
       }
@@ -87,130 +94,165 @@ export default function RsvpForm() {
     }
   }
 
-  return (
-    <form
-      className="w-full"
-      onSubmit={e => {
-        e.preventDefault();
-        e.stopPropagation();
-        form.handleSubmit();
-      }}
-    >
-      <div className="flex flex-col gap-3 w-full text-left">
-        <span className="my-2 text-sm text-base-content/60">* Required field</span>
-        <div className="flex flex-col gap-1">
-          <label htmlFor="name" className="label">
-            Name*
-          </label>
-          <form.Field
-            name="name"
-            children={field => (
-              <>
-                <input
-                  id="name"
-                  autoComplete="name"
-                  name={field.name}
-                  value={field.state.value}
-                  className="input input-lg w-full"
-                  onChange={e => field.handleChange(e.target.value)}
-                  type="text"
-                  required
-                />
-                <FormError
-                  showError={!field.state.meta.isValid}
-                  error={field.state.meta.errors.join(',')}
-                />
-              </>
-            )}
-          />
-        </div>
-        <div className="flex flex-col gap-1">
-          <label htmlFor="email" className="label">
-            Email*
-          </label>
-          <form.Field
-            name="email"
-            children={field => (
-              <>
-                <input
-                  id="email"
-                  autoComplete="name"
-                  name={field.name}
-                  value={field.state.value}
-                  className="input input-lg w-full"
-                  onChange={e => field.handleChange(e.target.value)}
-                  type="email"
-                  required
-                />
-                <FormError
-                  showError={!field.state.meta.isValid}
-                  error={field.state.meta.errors.join(',')}
-                />
-              </>
-            )}
-          />
-        </div>
-        <div className="flex flex-col gap-1">
-          <label htmlFor="phone" className="label">
-            Phone*
-          </label>
-          <form.Field
-            name="phone"
-            children={field => (
-              <>
-                <input
-                  id="phone"
-                  autoComplete="tel"
-                  name={field.name}
-                  value={field.state.value}
-                  className="input input-lg w-full"
-                  onChange={e => field.handleChange(e.target.value)}
-                  type="phone"
-                  required
-                />
-                <FormError
-                  showError={!field.state.meta.isValid}
-                  error={field.state.meta.errors.join(',')}
-                />
-              </>
-            )}
-          />
-        </div>
-        <div className="flex flex-col gap-1">
-          <label htmlFor="phone" className="label">
-            Guests
-          </label>
-          <span className="text-sm text-base-content/60">
-            Press enter to add a guest, click guest to remove
-          </span>
-          <form.Field
-            name="guests"
-            children={field => (
-              <>
-                <input type="text" onKeyDown={handleTagKeyDown} className="input input-lg w-full" />
-                {field.state.value && (
-                  <div className="flex flex-wrap gap-2 mt-2">
-                    {field.state.value.split(',').map((guest, index) => (
-                      <button
-                        type="button"
-                        key={index}
-                        className="cursor-pointer badge badge-lg badge-neutral"
-                        onClick={() => removeGuest(guest)}
-                      >
-                        {guest}
-                        <i className="ph-bold ph-x text-xs" />
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </>
-            )}
-          />
-        </div>
-        <button type="submit" className="btn btn-lg btn-neutral mt-2">
-          Submit
-        </button>
+  if (isSubmitted) {
+    return (
+      <div className="text-center h-full flex flex-col items-center justify-center pt-12 pb-8">
+        <i className="ph-light ph-confetti text-8xl mb-4"></i>
+        <h2 className="text-3xl font-bold mb-2">You're all set!</h2>
+        <p className="text-lg">Thank you for taking the time to RSVP.</p>
       </div>
-    </form>
+    );
+  }
+
+  return (
+    <>
+      <h2 className="text-xl font-bold mb-1">RSVP Form</h2>
+      <form
+        className="w-full"
+        onSubmit={e => {
+          e.preventDefault();
+          e.stopPropagation();
+          form.handleSubmit();
+        }}
+      >
+        <div className="flex flex-col gap-3 w-full text-left">
+          <span className="my-2 text-sm text-base-content/60">* Required field</span>
+          <div className="flex flex-col gap-1">
+            <label htmlFor="name" className="label">
+              Name*
+            </label>
+            <form.Field
+              name="name"
+              children={field => (
+                <>
+                  <input
+                    id="name"
+                    autoComplete="name"
+                    name={field.name}
+                    value={field.state.value}
+                    className="input input-lg w-full"
+                    onChange={e => field.handleChange(e.target.value)}
+                    type="text"
+                  />
+                  <FormError
+                    showError={!field.state.meta.isValid}
+                    error={field.state.meta.errors.join(',')}
+                  />
+                </>
+              )}
+            />
+          </div>
+          <div className="flex flex-col gap-1">
+            <label htmlFor="email" className="label">
+              Email*
+            </label>
+            <form.Field
+              name="email"
+              children={field => (
+                <>
+                  <input
+                    id="email"
+                    autoComplete="name"
+                    name={field.name}
+                    value={field.state.value}
+                    className="input input-lg w-full"
+                    onChange={e => field.handleChange(e.target.value)}
+                    type="email"
+                  />
+                  <FormError
+                    showError={!field.state.meta.isValid}
+                    error={field.state.meta.errors.join(',')}
+                  />
+                </>
+              )}
+            />
+          </div>
+          <div className="flex flex-col gap-1">
+            <label htmlFor="phone" className="label">
+              Phone*
+            </label>
+            <form.Field
+              name="phone"
+              children={field => (
+                <>
+                  <input
+                    id="phone"
+                    autoComplete="tel"
+                    name={field.name}
+                    value={field.state.value}
+                    className="input input-lg w-full"
+                    onChange={e => field.handleChange(e.target.value)}
+                    type="phone"
+                  />
+                  <FormError
+                    showError={!field.state.meta.isValid}
+                    error={field.state.meta.errors.join(',')}
+                  />
+                </>
+              )}
+            />
+          </div>
+          <div className="flex flex-col gap-1">
+            <label htmlFor="phone" className="label">
+              Guests
+            </label>
+            <span className="text-sm text-base-content/60">
+              Press enter to add a guest, click guest to remove
+            </span>
+            <form.Field
+              name="guests"
+              children={field => (
+                <>
+                  <input
+                    type="text"
+                    onKeyDown={handleTagKeyDown}
+                    className="input input-lg w-full"
+                  />
+                  {(field.state.value && (
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      {field.state.value.split(',').map((guest, index) => (
+                        <button
+                          type="button"
+                          key={index}
+                          className="cursor-pointer badge badge-lg badge-primary"
+                          onClick={() => removeGuest(guest)}
+                        >
+                          {guest}
+                          <i className="ph-bold ph-x text-xs" />
+                        </button>
+                      ))}
+                    </div>
+                  )) || <span className="badge badge-ghost badge-lg mt-2">No guests</span>}
+                </>
+              )}
+            />
+          </div>
+          <form.Field
+            name="attending"
+            children={field => (
+              <>
+                <label className="label mt-2 text-base-content">
+                  <input
+                    type="checkbox"
+                    checked={field.state.value}
+                    onChange={e => field.handleChange(e.target.checked)}
+                    className="checkbox checkbox-neutral mr-1"
+                  />
+                  I will be attending the wedding
+                </label>
+              </>
+            )}
+          />
+          <button type="submit" className="btn btn-lg btn-accent mt-2">
+            {form.state.isSubmitting ? (
+              <i className="ph-bold ph-spinner ph-spin mr-2" />
+            ) : (
+              <i className="ph-bold ph-check mr-2" />
+            )}
+            Submit
+          </button>
+        </div>
+      </form>
+    </>
   );
 }

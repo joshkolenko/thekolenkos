@@ -5,18 +5,40 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="RSVP" description="Taylor and Josh's wedding RSVP page">
-  <div class="px-8 pt-20 pb-10 items-center text-center text-black">
-    <div class="w-full max-w-md mx-auto">
-      <h1 class="font-body text-5xl tracking-wider mb-6">RSVP</h1>
-
-      <p class="mb-4 text-xl">
-        RSVP deadline: <strong>June 1, 2026</strong>
-      </p>
-      <p class="mb-8">
-        If you'd like to attend our wedding, please fill out the form below. If you have additional
-        guests such as children or your plus one, enter their names in the Guests field.
-      </p>
-      <RsvpForm client:load />
+  <div class="px-8 pt-20 pb-16 md:pt-32 lg:pt-40 md:max-w-5xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 md:gap-16 lg:gap-30 justify-center">
+      <div>
+        <h1 class="font-heading font-bold text-5xl tracking-wider mb-3">RSVP</h1>
+        <p class="text-lg mb-4">verb / <strong>ahr - es - vee - pee</strong></p>
+        <p>
+          Abbreviation for the French saying "Répondez s'il vous plaît", which translates to:
+          "Respond, if you please".
+        </p>
+        <div class="divider"></div>
+        <h2 class="text-xl font-bold mt-8 mb-1">Instructions</h2>
+        <p class="mb-8">
+          Please fill out the RSVP form <span class="md:hidden">below</span> to let us know if you will
+          be attending our wedding. Be sure to include any guests you are bringing, whether that be a
+          plus one or your children.
+        </p>
+        <h2 class="text-xl font-bold mb-1">RSVP deadline</h2>
+        <p class="text-xl">April 1, 2026</p>
+        <h2 class="text-xl font-bold mt-8 mb-2">Wedding information</h2>
+        <p class="text-xl leading-7 flex gap-1 mb-2">
+          <i class="ph-light ph-calendar relative top-1 w-6"></i>September 17, 2026
+        </p>
+        <p class="text-xl leading-7 flex gap-1">
+          <i class="ph-light ph-map-pin relative top-1 w-6"></i>
+          <a href="https://g.co/kgs/DBe6S4a" target="_blank" rel="noopener noreferrer">
+            Lakeside Gardens 16211 SE Foster Rd<br />
+            <strong>Portland, OR 97236</strong>
+          </a>
+        </p>
+      </div>
+      <div class="divider mt-8 md:hidden"></div>
+      <div class="mt-8 md:mt-0">
+        <RsvpForm client:load />
+      </div>
     </div>
   </div>
   <Dock active="RSVP" />

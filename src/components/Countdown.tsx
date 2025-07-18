@@ -11,7 +11,7 @@ function DateSegment({ value, label }: { value: number; label: string }) {
 
 export default function Countdown({ date }: { date: Date }) {
   return (
-    <div className="bg-black text-white px-5 py-1.5 md:px-8 md:py-2.5">
+    <div className="bg-base-content text-white px-5 py-1.5 md:px-8 md:py-2.5">
       <ReactCountdown
         date={date}
         renderer={({ days, hours, minutes, seconds }) => (
