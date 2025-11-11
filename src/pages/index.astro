@@ -29,14 +29,16 @@ import Nav from '../components/astro/Nav.astro';
         class="min-w-5xl w-full absolute lg:relative left-1/2 lg:left-0 -translate-x-1/2 lg:translate-0 fill-base-200 top-[1px]"
       />
     </div>
-    <div class="pt-15 px-8 pb-20 bg-base-200 relative z-10 text-center">
+    <div class="pt-24 px-8 pb-20 bg-base-200 relative z-10 text-center">
       <h2 class="font-serif text-4xl sm:text-5xl md:text-6xl mb-20 md:mb-28">The engagement</h2>
       <EngagementImages />
       <div
         class="grid gap-8 md:gap-4 grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-center justify-items-center mt-46 max-w-7xl mx-auto"
       >
         <div class="flex flex-col gap-8">
-          <h3 class="font-sans font-black tracking-widest text-xl uppercase">When</h3>
+          <h3 class="font-sans font-black tracking-widest text-xl uppercase text-base-content/50">
+            When
+          </h3>
           <p class="font-serif text-4xl lg:text-5xl leading-12 lg:leading-16">
             Thursday <br /> September 17, 2026 <br /> 4:00pm
           </p>
@@ -45,7 +47,9 @@ import Nav from '../components/astro/Nav.astro';
           <Vine />
         </div>
         <div class="flex flex-col gap-8">
-          <h3 class="font-sans font-black tracking-widest text-xl uppercase">Where</h3>
+          <h3 class="font-sans font-black tracking-widest text-xl uppercase text-base-content/50">
+            Where
+          </h3>
           <p class="font-serif text-4xl lg:text-5xl leading-12 lg:leading-16">
             Lakeside Gardens <br /> 16211 SE Foster Rd <br /> Portland, OR 97236
           </p>
@@ -59,9 +63,11 @@ import Nav from '../components/astro/Nav.astro';
         class="min-w-5xl w-full absolute lg:relative left-1/2 lg:left-0 -translate-x-1/2 lg:translate-0 fill-primary top-[1px]"
       />
     </div>
-    <div class="bg-primary pt-10 px-20 pb-30 flex flex-col">
-      <h2 class="text-center text-4xl text-balance mb-8">We'd love if you could join us.</h2>
-      <a class="btn btn-neutral w-full md:max-w-80 mx-auto" href="/rsvp">RSVP</a>
+    <div class="bg-primary pt-10 px-12 pb-30 flex flex-col">
+      <h2 class="font-serif text-center text-4xl md:text-5xl text-balance mb-10">
+        We'd love if you could join us.
+      </h2>
+      <a class="btn btn-neutral btn-lg w-full md:max-w-80 mx-auto" href="/rsvp">RSVP</a>
     </div>
   </main>
 </BaseLayout>
