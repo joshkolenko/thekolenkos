@@ -1,16 +1,19 @@
 ---
-// Supports weights 400-900
-import '@fontsource-variable/playfair';
-import '@fontsource/playball';
 import '@phosphor-icons/web/light';
 import '@phosphor-icons/web/bold';
 import '@phosphor-icons/web/fill';
-
+import '@fontsource-variable/playfair';
+import '@fontsource-variable/dm-sans';
+import '@fontsource/dm-serif-text';
 import '../styles/global.css';
 
-import playballWoff2 from '@fontsource/playball/files/playball-latin-400-normal.woff2';
+import dmSans from '@fontsource-variable/dm-sans/files/dm-sans-latin-standard-normal.woff2';
+import dmSerifText from '@fontsource/dm-serif-text/files/dm-serif-text-latin-400-normal.woff2';
+import playfair from '@fontsource-variable/playfair/files/playfair-latin-standard-normal.woff2';
 
-const { title, description } = Astro.props;
+import Nav from '@/components/astro/Nav.astro';
+
+const { title, description, navIsLight } = Astro.props;
 ---
 
 <html lang="en">
@@ -20,12 +23,12 @@ const { title, description } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    <link rel="preload" as="font" type="font/woff2" href={dmSans} crossorigin="anonymous" />
+    <link rel="preload" as="font" type="font/woff2" href={dmSerifText} crossorigin="anonymous" />
+    <link rel="preload" as="font" type="font/woff2" href={playfair} crossorigin="anonymous" />
     <title>{title}</title>
-    <link rel="preload" as="font" type="font/woff2" href={playballWoff2} crossorigin="anonymous" />
   </head>
   <body>
-    <div class="pb-12">
-      <slot />
-    </div>
+    <slot />
   </body>
 </html>

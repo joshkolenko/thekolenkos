@@ -1,17 +1,19 @@
 ---
-import CodeForm from '../components/CodeForm';
-import BaseLayout from '../layouts/BaseLayout.astro';
+import CodeForm from '@/components/react/CodeForm';
+import BaseLayout from '@/layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="RSVP" description="Taylor and Josh's wedding RSVP page">
-  <div class="px-8 pt-10 pb-10 items-center text-center text-black">
-    <div class="w-full max-w-md mx-auto">
-      <h1 class="font-heading text-2xl mb-20">The Kolenkos</h1>
-      <p class="font-bold text-3xl mb-4">What's the password?</p>
-      <p class="mb-12 mx-auto text-balance">
-        Enter the access code provided to you by Taylor and Josh to access the wedding website.
-      </p>
-      <CodeForm client:load />
+  <main>
+    <div class="px-8 pt-10 pb-10 items-center text-center">
+      <div class="w-full max-w-md mx-auto">
+        <h1 class="text-2xl mb-20">The Kolenkos</h1>
+        <h2 class="text-3xl mb-6">What's the password?</h2>
+        <p class="mb-16 mx-auto text-balance">
+          Enter the access code provided to you by Taylor and Josh to access the wedding website.
+        </p>
+        <CodeForm client:load />
+      </div>
     </div>
-  </div>
+  </main>
 </BaseLayout>

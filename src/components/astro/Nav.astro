@@ -1,0 +1,63 @@
+---
+import MenuIcon from '@/svg/menu.svg';
+import clsx from 'clsx';
+
+const links: { href: string; text: string; active?: boolean }[] = [
+  { href: '/', text: 'Home' },
+  { href: '/rsvp', text: 'RSVP' },
+];
+
+links.map(link => link.href === Astro.url.pathname && (link.active = true));
+
+const { isLight } = Astro.props;
+---
+
+<nav
+  class={clsx(
+    'px-8 -mb-[1px] h-18 md:h-24 flex items-center justify-between',
+    isLight ? 'text-base-content bg-base-200' : 'text-base-200 bg-base-content'
+  )}
+>
+  <a href="/" class="font-display text-[2.5rem] flex gap-2">
+    <span class="font-semibold">T</span>
+    <span>&</span>
+    <span class="font-semibold">J</span>
+  </a>
+  <div class="drawer drawer-end w-auto">
+    <input id="nav-drawer" type="checkbox" class="drawer-toggle" />
+    <div class="drawer-content">
+      <label for="nav-drawer" class="cursor-pointer flex items-center gap-4">
+        <MenuIcon class={clsx('w-8 h-8', isLight ? 'fill-base-content' : 'fill-base-200')} />
+      </label>
+    </div>
+    <div class="drawer-side z-50">
+      <label for="nav-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+      <div class="menu bg-base-content min-h-full w-[90%] max-w-100 p-10 sm:p-14 pt-22 sm:pt-28">
+        <label
+          for="nav-drawer"
+          aria-label="close"
+          class="drawer-overlay absolute top-0 right-0 cursor-pointer p-8 text-2xl aspect-square flex items-center justify-center"
+        >
+          <i class="ph-bold ph-x text-base-200"></i>
+        </label>
+        <ul>
+          {
+            links.map(link => (
+              <li>
+                <a
+                  href={link.href}
+                  class={clsx(
+                    'font-serif text-3xl sm:text-4xl py-5 px-0 block text-base-200',
+                    link.active && 'underline underline-offset-8 pointer-events-none'
+                  )}
+                >
+                  {link.text}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -60,7 +60,7 @@ export default function RsvpForm() {
                   autoCapitalize="off"
                   name={field.name}
                   value={field.state.value}
-                  className="input input-lg w-full"
+                  className="input input-border w-full"
                   onChange={e => field.handleChange(e.target.value)}
                   type="password"
                   required
@@ -73,7 +73,7 @@ export default function RsvpForm() {
             )}
           />
         </div>
-        <button type="submit" className="btn btn-lg btn-neutral mt-2">
+        <button type="submit" className="btn btn-primary mt-2">
           Submit
         </button>
       </div>
