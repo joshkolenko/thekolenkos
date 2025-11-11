@@ -1,7 +1,7 @@
 import { createRsvp } from '@db';
 
 export async function POST({ request }: { request: Request }) {
-  const { name, email, phone, guests, attending } = await request.json();
+  const { name, email, phone, message, guest, guestName, attending } = await request.json();
 
   if (!name || !email || !phone) {
     return new Response('Invalid input', { status: 400 });
@@ -12,7 +12,9 @@ export async function POST({ request }: { request: Request }) {
       name,
       email,
       phone,
-      guests,
+      message: message || '',
+      guest: guest || false,
+      guestName: guestName || '',
       attending: attending !== undefined ? attending : true,
     });
 

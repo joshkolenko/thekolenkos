@@ -48,8 +48,6 @@ export default function RsvpForm() {
       },
     },
     onSubmit: async ({ value }) => {
-      console.log(value);
-      return;
       try {
         const result = await fetch('/api/rsvp', {
           method: 'POST',
