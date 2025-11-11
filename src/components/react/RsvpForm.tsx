@@ -250,7 +250,12 @@ export default function RsvpForm() {
                   Message (additional guests, dietary restrictions, etc.)
                 </legend>
                 <div className="relative w-full">
-                  <textarea id="message" name={field.name} className="textarea h-24 w-full pr-23" />
+                  <textarea
+                    id="message"
+                    name={field.name}
+                    className="textarea h-24 w-full pr-23"
+                    onChange={e => field.handleChange(e.target.value)}
+                  />
                 </div>
                 <div className="label">Optional</div>
               </fieldset>
