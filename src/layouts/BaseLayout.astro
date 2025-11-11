@@ -10,10 +10,9 @@ import '../styles/global.css';
 import dmSans from '@fontsource-variable/dm-sans/files/dm-sans-latin-standard-normal.woff2';
 import dmSerifText from '@fontsource/dm-serif-text/files/dm-serif-text-latin-400-normal.woff2';
 import playfair from '@fontsource-variable/playfair/files/playfair-latin-standard-normal.woff2';
+import clsx from 'clsx';
 
-import Nav from '@/components/astro/Nav.astro';
-
-const { title, description, navIsLight } = Astro.props;
+const { title, description, bodyClass } = Astro.props;
 ---
 
 <html lang="en">
@@ -23,12 +22,13 @@ const { title, description, navIsLight } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#344e41" />
     <link rel="preload" as="font" type="font/woff2" href={dmSans} crossorigin="anonymous" />
     <link rel="preload" as="font" type="font/woff2" href={dmSerifText} crossorigin="anonymous" />
     <link rel="preload" as="font" type="font/woff2" href={playfair} crossorigin="anonymous" />
     <title>{title}</title>
   </head>
-  <body>
+  <body class={clsx('bg-base-200', bodyClass)}>
     <slot />
   </body>
 </html>
