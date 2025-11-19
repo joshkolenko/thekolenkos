@@ -18,36 +18,43 @@ import { EngagementCarousel } from "@/components/react/EngagementCarousel";
     <div class="bg-base-content pt-18 md:pt-48 px-8 pb-20">
       <h1 class="visually-hidden">The Kolenkos</h1>
       <p
-        class="font-serif text-center text-base-200 text-[clamp(1.75rem,4vw,3rem)] leading-[1.3em] tracking-tight md:max-w-full mx-auto"
+        class="font-serif text-center text-base-200 text-[clamp(1.75rem,4vw,3.5rem)] leading-[1.3em] tracking-tight md:max-w-full mx-auto"
       >
         You're invited to celebrate the wedding of <span class="lg:block">
           Taylor Diaz & Joshua Kolenko on September 17, 2026
-        </span> at <span class="underline underline-offset-6 decoration-3"
-          >Lakeside Gardens in Portland, Oregon.</span
+        </span> at <a
+          href="https://g.co/kgs/DBe6S4a"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="underline underline-offset-6 decoration-3">Lakeside Gardens in Portland, Oregon.</a
         >
       </p>
     </div>
     <div
-      class="bg-base-content relative w-full h-32 md:h-[13vw] overflow-hidden lg:overflow-visible -mt-[1px]"
+      class="bg-base-content relative w-full h-32 md:h-[13.5vw] overflow-hidden lg:overflow-visible -mt-[1px]"
     >
       <Mountain
         class="min-w-5xl w-full absolute lg:relative left-1/2 lg:left-0 -translate-x-1/2 lg:translate-0 fill-base-200 top-[1px]"
       />
     </div>
-    <div class="bg-base-200 relative z-10 text-center pt-16 md:pt-28 pb-28 md:pb-46">
-      <h2 class="font-serif text-4xl md:text-5xl mb-12 md:mb-16">We're getting married!</h2>
+    <div class="bg-base-200 relative z-10 text-center pt-16 md:pt-28 pb-30 md:pb-46">
+      <div class="px-8">
+        <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl mb-12 md:mb-16 lg:mb-20">
+          We're getting married!
+        </h2>
+      </div>
       <div class="mx-auto">
         <EngagementCarousel client:load />
       </div>
       <div
-        class="grid gap-16 md:gap-4 grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-center justify-items-center mt-30 md:mt-48 max-w-6xl mx-auto px-10"
+        class="grid gap-16 md:gap-4 grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-center justify-items-center mt-30 md:mt-48 max-w-[1600px] mx-auto px-10"
       >
         <div class="flex flex-col gap-8">
           <h3 class="font-sans wght-850 tracking-widest text-xl uppercase text-base-content/50">
             When
           </h3>
           <p
-            class="font-serif text-4xl md:text-4xl xl:text-5xl text-base-content leading-13 xl:leading-16 -tracking-[0.0125em]"
+            class="font-serif text-4xl md:text-4xl lg:text-5xl xl:text-6xl text-base-content leading-13 xl:leading-20 -tracking-[0.0125em]"
           >
             Thursday <br /> September 17, 2026 <br /> 4:00pm
           </p>
@@ -60,16 +67,14 @@ import { EngagementCarousel } from "@/components/react/EngagementCarousel";
             Where
           </h3>
           <p
-            class="font-serif text-4xl md:text-4xl xl:text-5xl text-base-content leading-13 xl:leading-16 -tracking-[0.0125em]"
+            class="font-serif text-4xl md:text-4xl lg:text-5xl xl:text-6xl text-base-content leading-13 xl:leading-20 -tracking-[0.0125em]"
           >
             Lakeside Gardens <br /> 16211 SE Foster Rd <br /> Portland, OR 97236
           </p>
         </div>
       </div>
     </div>
-    <div
-      class="bg-base-200 relative w-full h-24 lg:h-auto overflow-hidden lg:overflow-visible -mt-[1px]"
-    >
+    <div class="bg-base-200 relative w-full h-24 lg:h-[7.5vw] overflow-hidden -mb-[1px]">
       <Hills
         class="min-w-5xl w-full absolute lg:relative left-1/2 lg:left-0 -translate-x-1/2 lg:translate-0 fill-primary top-[1px]"
       />

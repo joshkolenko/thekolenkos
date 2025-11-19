@@ -1,9 +1,9 @@
-import type { Rsvp } from '../../db/schema';
+import type { Rsvp } from "../../db/schema";
 
-import { useRef, useState } from 'react';
-import { useForm } from '@tanstack/react-form';
+import { useRef, useState } from "react";
+import { useForm } from "@tanstack/react-form";
 
-import FormError from './FormError';
+import FormError from "./FormError";
 
 export default function RsvpForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -11,31 +11,31 @@ export default function RsvpForm() {
   const form = useForm({
     defaultValues: {
       attending: true,
-      name: '',
-      email: '',
-      phone: '',
-      message: '',
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
       guest: false,
-      guestName: '',
+      guestName: "",
     } as Rsvp,
     validators: {
       onSubmit: ({ value }) => {
         const errors: Partial<Rsvp> = {};
 
         if (!value.name) {
-          errors['name'] = 'Name is required';
+          errors["name"] = "Name is required";
         }
 
         if (!value.email) {
-          errors['email'] = 'Email is required';
+          errors["email"] = "Email is required";
         } else if (!/\S+@\S+\.\S+/.test(value.email)) {
-          errors['email'] = 'Email is invalid';
+          errors["email"] = "Email is invalid";
         }
 
         if (!value.phone) {
-          errors['phone'] = 'Phone is required';
+          errors["phone"] = "Phone is required";
         } else if (!/^\+?[1-9]\d{1,14}$/.test(value.phone)) {
-          errors['phone'] = 'Phone number is invalid';
+          errors["phone"] = "Phone number is invalid";
         }
 
         if (Object.keys(errors).length) {
@@ -49,10 +49,10 @@ export default function RsvpForm() {
     },
     onSubmit: async ({ value }) => {
       try {
-        const result = await fetch('/api/rsvp', {
-          method: 'POST',
+        const result = await fetch("/api/rsvp", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify(value),
         });
@@ -62,11 +62,11 @@ export default function RsvpForm() {
         if (data.success) {
           setIsSubmitted(true);
         } else {
-          alert('Error submitting form: ' + (data.error || 'Unknown error'));
+          alert("Error submitting form: " + (data.error || "Unknown error"));
         }
       } catch (error) {
-        console.error('Error submitting form:', error);
-        alert('Error submitting form');
+        console.error("Error submitting form:", error);
+        alert("Error submitting form");
       }
     },
   });
@@ -83,7 +83,7 @@ export default function RsvpForm() {
 
   return (
     <>
-      <h2 className="text-2xl font-bold mb-4">RSVP Form</h2>
+      <h2 className="text-3xl mb-4">RSVP Form</h2>
       <form
         className="w-full"
         onSubmit={e => {
@@ -139,7 +139,7 @@ export default function RsvpForm() {
                 />
                 <FormError
                   showError={!field.state.meta.isValid}
-                  error={field.state.meta.errors.join(',')}
+                  error={field.state.meta.errors.join(",")}
                 />
               </fieldset>
             )}
@@ -160,7 +160,7 @@ export default function RsvpForm() {
                 />
                 <FormError
                   showError={!field.state.meta.isValid}
-                  error={field.state.meta.errors.join(',')}
+                  error={field.state.meta.errors.join(",")}
                 />
               </fieldset>
             )}
@@ -181,7 +181,7 @@ export default function RsvpForm() {
                 />
                 <FormError
                   showError={!field.state.meta.isValid}
-                  error={field.state.meta.errors.join(',')}
+                  error={field.state.meta.errors.join(",")}
                 />
               </fieldset>
             )}
@@ -219,24 +219,24 @@ export default function RsvpForm() {
           <form.Field
             name="guestName"
             validators={{
-              onChangeListenTo: ['guest'],
+              onChangeListenTo: ["guest"],
             }}
             children={field =>
-              field.form.getFieldValue('guest') && (
+              field.form.getFieldValue("guest") && (
                 <fieldset className="fieldset">
                   <legend className="fieldset-legend">Guest name*</legend>
                   <input
                     id="name"
                     autoComplete="name"
                     name={field.name}
-                    value={field.state.value || ''}
+                    value={field.state.value || ""}
                     className="input w-full"
                     onChange={e => field.handleChange(e.target.value)}
                     type="text"
                   />
                   <FormError
                     showError={!field.state.meta.isValid}
-                    error={field.state.meta.errors.join(',')}
+                    error={field.state.meta.errors.join(",")}
                   />
                 </fieldset>
               )
@@ -265,7 +265,7 @@ export default function RsvpForm() {
             selector={state => [state.canSubmit, state.isSubmitting]}
             children={([canSubmit, isSubmitting]) => (
               <button type="submit" className="btn btn-accent mt-2" disabled={!canSubmit}>
-                {isSubmitting ? <div className="loading loading-sm loading-spinner" /> : 'Submit'}
+                {isSubmitting ? <div className="loading loading-sm loading-spinner" /> : "Submit"}
               </button>
             )}
           />

@@ -70,6 +70,8 @@
   }
 
   * {
+    font-family: inherit;
+    font-variation-settings: inherit;
     color: inherit;
     letter-spacing: inherit;
   }
@@ -91,18 +93,27 @@
   }
 
   body,
+  fieldset,
   input,
   button,
   select,
   textarea {
     font-family: var(--font-sans);
-    font-variation-settings: "wght" 350;
+    font-variation-settings: "wght" 500;
+  }
+
+  p {
+    font-variation-settings: "wght" 400;
     letter-spacing: -0.0125em;
   }
 
-  strong {
-    font-weight: 600;
+  button,
+  .btn {
     font-variation-settings: "wght" 600;
+  }
+
+  strong {
+    font-variation-settings: "wght" 700;
   }
 }
 
@@ -113,6 +124,10 @@
 
   .animate-fade-in {
     animation: fade-in 300ms ease-in-out;
+  }
+
+  .fieldset {
+    font-size: 0.8rem;
   }
 
   @keyframes fade-in {
