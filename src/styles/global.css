@@ -1,5 +1,5 @@
-@import 'tailwindcss';
-@import 'tw-animate-css';
+@import "tailwindcss";
+@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 @plugin "@tailwindcss/typography";
@@ -9,7 +9,7 @@
 }
 
 @plugin "daisyui/theme" {
-  name: 'wedding';
+  name: "wedding";
   default: true;
   --color-base-100: #f4f2eb;
   --color-base-200: oklch(93.982% 0.007 61.449);
@@ -42,9 +42,21 @@
 }
 
 @theme {
-  --font-sans: 'DM Sans', sans-serif;
-  --font-serif: 'DM Serif Text', serif;
-  --font-display: 'Playfair Variable', serif;
+  --font-sans: "DM Sans Variable", sans-serif;
+  --font-serif: "DM Serif Text", serif;
+  --font-display: "Playfair Variable", serif;
+}
+
+/* playfair-latin-wght-normal */
+@font-face {
+  font-family: "Playfair Variable";
+  font-style: normal;
+  font-display: fallback;
+  font-weight: 300 900;
+  src: url(@fontsource-variable/playfair/files/playfair-latin-wght-normal.woff2)
+    format("woff2-variations");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304,
+    U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @layer base {
@@ -53,8 +65,13 @@
     color: color-mix(in oklab, currentcolor 85%, transparent);
   }
 
-  p {
+  svg {
+    width: 100%;
+  }
+
+  * {
     color: inherit;
+    letter-spacing: inherit;
   }
 
   label {
@@ -69,7 +86,7 @@
   h6 {
     font-family: var(--font-serif);
     font-weight: 500;
-    /* letter-spacing: -0.0125em; */
+    letter-spacing: -0.0125em;
     color: var(--color-base-content);
   }
 
@@ -79,6 +96,13 @@
   select,
   textarea {
     font-family: var(--font-sans);
+    font-variation-settings: "wght" 350;
+    letter-spacing: -0.0125em;
+  }
+
+  strong {
+    font-weight: 600;
+    font-variation-settings: "wght" 600;
   }
 }
 
@@ -86,6 +110,23 @@
   .input-border {
     border-style: solid;
   }
+
+  .animate-fade-in {
+    animation: fade-in 300ms ease-in-out;
+  }
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+@utility wght-* {
+  font-variation-settings: "wght" --value(integer);
 }
 
 html {
@@ -109,4 +150,14 @@ body {
   margin: 0;
   overflow: hidden;
   clip-path: inset(50%);
+}
+.embla {
+  overflow: hidden;
+}
+.embla__container {
+  display: flex;
+}
+.embla__slide {
+  flex: 0 0 100%;
+  min-width: 0;
 }

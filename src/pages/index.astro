@@ -1,10 +1,11 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout.astro';
-import EngagementImages from '@/components/astro/EngagementImages.astro';
-import Mountain from '@/svg/mountain.svg';
-import Hills from '@/svg/hills.svg';
-import Vine from '@/svg/vine.svg';
-import Nav from '../components/astro/Nav.astro';
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Nav from "../components/astro/Nav.astro";
+import Mountain from "@/svg/mountain.svg";
+import Hills from "@/svg/hills.svg";
+
+import Heart10 from "@/svg/hearts/heart-10.svg";
+import { EngagementCarousel } from "@/components/react/EngagementCarousel";
 ---
 
 <BaseLayout
@@ -27,34 +28,40 @@ import Nav from '../components/astro/Nav.astro';
       </p>
     </div>
     <div
-      class="bg-base-content relative w-full h-32 lg:h-auto overflow-hidden lg:overflow-visible -mt-[1px]"
+      class="bg-base-content relative w-full h-32 md:h-[13vw] overflow-hidden lg:overflow-visible -mt-[1px]"
     >
       <Mountain
         class="min-w-5xl w-full absolute lg:relative left-1/2 lg:left-0 -translate-x-1/2 lg:translate-0 fill-base-200 top-[1px]"
       />
     </div>
-    <div class="pt-24 px-8 pb-20 bg-base-200 relative z-10 text-center">
-      <h2 class="font-serif text-4xl sm:text-5xl md:text-6xl mb-20 md:mb-28">The engagement</h2>
-      <EngagementImages />
+    <div class="bg-base-200 relative z-10 text-center pt-16 md:pt-28 pb-28 md:pb-46">
+      <h2 class="font-serif text-4xl md:text-5xl mb-12 md:mb-16">We're getting married!</h2>
+      <div class="mx-auto">
+        <EngagementCarousel client:load />
+      </div>
       <div
-        class="grid gap-8 md:gap-4 grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-center justify-items-center mt-46 max-w-7xl mx-auto"
+        class="grid gap-16 md:gap-4 grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-center justify-items-center mt-30 md:mt-48 max-w-6xl mx-auto px-10"
       >
         <div class="flex flex-col gap-8">
-          <h3 class="font-sans font-black tracking-widest text-xl uppercase text-base-content/50">
+          <h3 class="font-sans wght-850 tracking-widest text-xl uppercase text-base-content/50">
             When
           </h3>
-          <p class="font-serif text-4xl lg:text-5xl leading-12 lg:leading-16">
+          <p
+            class="font-serif text-4xl md:text-4xl xl:text-5xl text-base-content leading-13 xl:leading-16 -tracking-[0.0125em]"
+          >
             Thursday <br /> September 17, 2026 <br /> 4:00pm
           </p>
         </div>
-        <div class="relative w-20 md:w-14 lg:w-16 md:top-8 rotate-90 md:rotate-0">
-          <Vine />
+        <div class="relative w-10 md:top-8 overflow-visible">
+          <Heart10 />
         </div>
         <div class="flex flex-col gap-8">
-          <h3 class="font-sans font-black tracking-widest text-xl uppercase text-base-content/50">
+          <h3 class="font-sans wght-850 tracking-widest text-xl uppercase text-base-content/50">
             Where
           </h3>
-          <p class="font-serif text-4xl lg:text-5xl leading-12 lg:leading-16">
+          <p
+            class="font-serif text-4xl md:text-4xl xl:text-5xl text-base-content leading-13 xl:leading-16 -tracking-[0.0125em]"
+          >
             Lakeside Gardens <br /> 16211 SE Foster Rd <br /> Portland, OR 97236
           </p>
         </div>

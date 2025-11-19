@@ -1,10 +1,10 @@
 ---
-import MenuIcon from '@/svg/menu.svg';
-import clsx from 'clsx';
+import MenuIcon from "@/svg/menu.svg";
+import clsx from "clsx";
 
 const links: { href: string; text: string; active?: boolean }[] = [
-  { href: '/', text: 'Home' },
-  { href: '/rsvp', text: 'RSVP' },
+  { href: "/", text: "Home" },
+  { href: "/rsvp", text: "RSVP" },
 ];
 
 links.map(link => link.href === Astro.url.pathname && (link.active = true));
@@ -14,20 +14,20 @@ const { isLight } = Astro.props;
 
 <nav
   class={clsx(
-    'px-8 -mb-[1px] h-24 flex items-center justify-between',
-    isLight ? 'text-base-content bg-base-200' : 'text-base-200 bg-base-content'
+    "px-8 -mb-[1px] h-24 flex items-center justify-between",
+    isLight ? "text-base-content bg-base-200" : "text-base-200 bg-base-content"
   )}
 >
-  <a href="/" class="font-display text-[2.5rem] flex gap-2">
-    <span class="font-semibold">T</span>
+  <a href="/" class="font-display text-[2.5rem] flex gap-2 wght-500">
+    <span>T</span>
     <span>&</span>
-    <span class="font-semibold">J</span>
+    <span>J</span>
   </a>
   <div class="drawer drawer-end w-auto">
     <input id="nav-drawer" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content">
       <label for="nav-drawer" class="cursor-pointer flex items-center gap-4">
-        <MenuIcon class={clsx('w-8 h-8', isLight ? 'fill-base-content' : 'fill-base-200')} />
+        <MenuIcon class={clsx("w-8 h-8", isLight ? "fill-base-content" : "fill-base-200")} />
       </label>
     </div>
     <div class="drawer-side z-50">
@@ -47,8 +47,8 @@ const { isLight } = Astro.props;
                 <a
                   href={link.href}
                   class={clsx(
-                    'font-serif text-3xl sm:text-4xl py-5 px-0 block text-base-200',
-                    link.active && 'underline underline-offset-8 pointer-events-none'
+                    'relative font-serif text-3xl sm:text-4xl py-5 px-0 block text-base-200 after:content-[""] after:absolute after:left-0 after:bottom-2 after:w-full after:h-0.75 after:bg-base-200 hover:after:scale-x-20 after:scale-x-0 after:origin-top-left after:transition-transform after:duration-300',
+                    link.active && "after:scale-x-30 pointer-events-none"
                   )}
                 >
                   {link.text}

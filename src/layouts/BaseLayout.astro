@@ -1,16 +1,15 @@
 ---
-import '@phosphor-icons/web/light';
-import '@phosphor-icons/web/bold';
-import '@phosphor-icons/web/fill';
-import '@fontsource-variable/playfair';
-import '@fontsource-variable/dm-sans';
-import '@fontsource/dm-serif-text';
-import '../styles/global.css';
+import "@phosphor-icons/web/light";
+import "@phosphor-icons/web/bold";
+import "@phosphor-icons/web/fill";
+import "@fontsource-variable/dm-sans";
+import "@fontsource/dm-serif-text";
+import "../styles/global.css";
 
-import dmSans from '@fontsource-variable/dm-sans/files/dm-sans-latin-standard-normal.woff2';
-import dmSerifText from '@fontsource/dm-serif-text/files/dm-serif-text-latin-400-normal.woff2';
-import playfair from '@fontsource-variable/playfair/files/playfair-latin-standard-normal.woff2';
-import clsx from 'clsx';
+import dmSans from "@fontsource-variable/dm-sans/files/dm-sans-latin-standard-normal.woff2";
+import dmSerifText from "@fontsource/dm-serif-text/files/dm-serif-text-latin-400-normal.woff2";
+import playfair from "@fontsource-variable/playfair/files/playfair-latin-wght-normal.woff2";
+import clsx from "clsx";
 
 const { title, description, bodyClass } = Astro.props;
 ---
@@ -24,11 +23,11 @@ const { title, description, bodyClass } = Astro.props;
     <meta name="description" content={description} />
     <meta name="theme-color" content="#344e41" />
     <link rel="preload" as="font" type="font/woff2" href={dmSans} crossorigin="anonymous" />
-    <link rel="preload" as="font" type="font/woff2" href={dmSerifText} crossorigin="anonymous" />
+    <link rel="preload" as="font" type="font/woff2s" href={dmSerifText} crossorigin="anonymous" />
     <link rel="preload" as="font" type="font/woff2" href={playfair} crossorigin="anonymous" />
     <title>{title}</title>
   </head>
-  <body class={clsx('bg-base-200', bodyClass)}>
+  <body class={clsx("bg-base-200", bodyClass)}>
     <slot />
   </body>
 </html>
