@@ -30,7 +30,7 @@ const { title, description, bodyClass } = Astro.props;
     <link rel="preload" as="font" type="font/woff2" href={playfair} crossorigin="anonymous" />
     <title>{title}</title>
   </head>
-  <body class={clsx("bg-base-content", bodyClass)}>
+  <body class={clsx(bodyClass || "bg-base-content")}>
     <slot />
   </body>
 </html>

@@ -5,6 +5,6 @@ import PageLayout from "@/layouts/PageLayout.astro";
 
 <PageLayout>
   <div class="flex items-center justify-center min-h-80">
-    <SignIn path="/login" routing="path" signUpUrl="/register" />
+    <SignIn routing="path" path="/login" transferable={false} withSignUp={false} />
   </div>
 </PageLayout>
