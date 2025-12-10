@@ -1,0 +1,17 @@
+---
+import Mountain from "@/svg/mountain.svg";
+import clsx from "clsx";
+
+const hasSlot = Astro.slots.has("default");
+---
+
+<div class={clsx("bg-base-content", hasSlot && "pt-18 md:pt-48 px-8 pb-20")}>
+  <slot />
+</div>
+<div
+  class="bg-base-content relative w-full h-32 md:h-[13.5vw] overflow-hidden lg:overflow-visible -mt-[1px]"
+>
+  <Mountain
+    class="min-w-5xl w-full absolute lg:relative left-1/2 lg:left-0 -translate-x-1/2 lg:translate-0 fill-base-200 top-[1px]"
+  />
+</div>

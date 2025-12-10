@@ -1,0 +1,12 @@
+---
+import ResponsesTable from "@/components/react/ResponsesTable";
+import PageLayout from "@/layouts/PageLayout.astro";
+---
+
+<PageLayout title="Admin" description="Admin dashboard" wrapperClass="max-w-[1920px]!">
+  <div class="text-center">
+    <h1 class="text-4xl mb-6">Responses</h1>
+    <p class="mb-16">View and manage RSVP form submissions</p>
+    <ResponsesTable client:load />
+  </div>
+</PageLayout>

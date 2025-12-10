@@ -1,56 +1,50 @@
 ---
-import RsvpForm from '../components/react/RsvpForm';
-import Nav from '../components/astro/Nav.astro';
-import BaseLayout from '../layouts/BaseLayout.astro';
+import RsvpForm from "../components/react/RsvpForm";
+import PageLayout from "@/layouts/PageLayout.astro";
 ---
 
-<BaseLayout title="RSVP" description="Taylor and Josh's wedding RSVP page" navIsLight={true}>
-  <Nav isLight={true} />
-  <main class="bg-base-200 min-h-[calc(100dvh-6rem)]">
-    <div class="px-8 pt-16 pb-16 md:pt-20 lg:pt-24 md:max-w-5xl mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-2 md:gap-16 lg:gap-30 justify-center">
-        <div>
-          <h1 class="text-6xl mb-3">RSVP</h1>
-          <p>verb / <strong>ahr - es - vee - pee</strong></p>
-          <p class="mt-4 mb-6">
-            Abbreviation for the French saying "Répondez s'il vous plaît", which translates to:
-            "Respond, if you please".
-          </p>
-          <div class="divider"></div>
-          <h2 class="text-2xl mt-8 mb-2">Instructions</h2>
-          <p class="mb-6">
-            Please fill out the RSVP form <span class="md:hidden">below</span> to let us know if you
-            will be attending our wedding. Be sure to include any guests you would like to bring, any
-            dietary restrictions we should be aware of or any other information.
-          </p>
-          <p>
-            We can't guarantee that all guests are able to attend, we will do our best to
-            accommodate everyone.
-          </p>
-          <h2 class="text-2xl mt-8 mb-2">RSVP deadline</h2>
-          <p>April 1, 2026</p>
-          <h2 class="text-2xl mt-8 mb-2">Wedding information</h2>
-          <p class="leading-7 flex gap-1 mt-0 mb-0">
-            <i class="ph-light ph-calendar relative top-1 w-6 shrink-0"></i>September 17, 2026
-          </p>
-          <p class="leading-7 flex gap-1 mt-0 mb-0">
-            <i class="ph-light ph-map-pin relative top-1 w-6 shrink-0"></i>
-            <a
-              class="flex flex-col no-underline text-[inherit]"
-              href="https://g.co/kgs/DBe6S4a"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span class="underline">Lakeside Gardens</span>
-              <span class="leading-5"> 16211 SE Foster Rd<br />Portland, OR 97236 </span>
-            </a>
-          </p>
-        </div>
-        <div class="divider mt-8 md:hidden"></div>
-        <div class="mt-8 md:mt-0">
-          <RsvpForm client:load />
-        </div>
-      </div>
+<PageLayout title="RSVP" description="Taylor and Josh's wedding RSVP page">
+  <div class="grid grid-cols-1 md:grid-cols-2 md:gap-16 lg:gap-30 justify-center">
+    <div>
+      <h1 class="text-6xl mb-3">RSVP</h1>
+      <p>verb / <strong>ahr - es - vee - pee</strong></p>
+      <p class="mt-4 mb-6">
+        Abbreviation for the French saying "Répondez s'il vous plaît", which translates to:
+        "Respond, if you please".
+      </p>
+      <div class="divider"></div>
+      <h2 class="text-2xl mt-8 mb-2">Instructions</h2>
+      <p class="mb-6">
+        Please fill out the RSVP form <span class="md:hidden">below</span> to let us know if you will
+        be attending our wedding. Be sure to include any guests you would like to bring, any dietary
+        restrictions we should be aware of or any other information.
+      </p>
+      <p>
+        We can't guarantee that all guests are able to attend, we will do our best to accommodate
+        everyone.
+      </p>
+      <h2 class="text-2xl mt-8 mb-2">RSVP deadline</h2>
+      <p>April 1, 2026</p>
+      <h2 class="text-2xl mt-8 mb-2">Wedding information</h2>
+      <p class="leading-7 flex gap-1 mt-0 mb-0">
+        <i class="ph-light ph-calendar relative top-1 w-6 shrink-0"></i>September 17, 2026
+      </p>
+      <p class="leading-7 flex gap-1 mt-0 mb-0">
+        <i class="ph-light ph-map-pin relative top-1 w-6 shrink-0"></i>
+        <a
+          class="flex flex-col no-underline text-[inherit]"
+          href="https://g.co/kgs/DBe6S4a"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="underline">Lakeside Gardens</span>
+          <span class="leading-5"> 16211 SE Foster Rd<br />Portland, OR 97236 </span>
+        </a>
+      </p>
     </div>
-  </main>
-</BaseLayout>
+    <div class="divider mt-8 md:hidden"></div>
+    <div class="mt-8 md:mt-0">
+      <RsvpForm client:load />
+    </div>
+  </div>
+</PageLayout>

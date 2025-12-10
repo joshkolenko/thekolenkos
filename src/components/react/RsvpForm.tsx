@@ -74,7 +74,7 @@ export default function RsvpForm() {
   if (isSubmitted) {
     return (
       <div className="text-center h-full flex flex-col items-center justify-center pt-12 pb-8">
-        <i className="ph-light ph-confetti text-8xl mb-4"></i>
+        <i className="ph-light ph-confetti text-8xl mb-4 text-base-content"></i>
         <h2 className="text-3xl font-bold mb-2">You're all set!</h2>
         <p className="text-lg">Thank you for taking the time to RSVP.</p>
       </div>

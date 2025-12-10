@@ -2,6 +2,8 @@
 import MenuIcon from "@/svg/menu.svg";
 import clsx from "clsx";
 
+import { SignedIn, SignOutButton } from "@clerk/astro/components";
+
 const links: { href: string; text: string; active?: boolean }[] = [
   { href: "/", text: "Home" },
   { href: "/rsvp", text: "RSVP" },
@@ -56,7 +58,27 @@ const { isLight } = Astro.props;
               </li>
             ))
           }
+          <SignedIn>
+            <li>
+              <a
+                href="/responses"
+                class={clsx(
+                  'relative font-serif text-3xl sm:text-4xl py-5 px-0 block text-base-200 after:content-[""] after:absolute after:left-0 after:bottom-2 after:w-full after:h-0.75 after:bg-base-200 hover:after:scale-x-20 after:scale-x-0 after:origin-top-left after:transition-transform after:duration-300',
+                  Astro.url.pathname === "/responses" && "after:scale-x-30 pointer-events-none"
+                )}
+              >
+                Responses
+              </a>
+            </li>
+          </SignedIn>
         </ul>
+        <div class="mt-auto w-full">
+          <SignedIn>
+            <SignOutButton asChild redirectUrl="/login">
+              <button class="mt-10 btn btn-primary w-full">Log out</button>
+            </SignOutButton>
+          </SignedIn>
+        </div>
       </div>
     </div>
   </div>

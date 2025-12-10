@@ -2,23 +2,20 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Nav from "../components/astro/Nav.astro";
 import Mountain from "@/svg/mountain.svg";
-import Hills from "@/svg/hills.svg";
 
 import Heart10 from "@/svg/hearts/heart-10.svg";
 import { EngagementCarousel } from "@/components/react/EngagementCarousel";
+import Footer from "@/components/astro/Footer.astro";
+import Header from "@/components/astro/Header.astro";
 ---
 
-<BaseLayout
-  title="The Kolenkos"
-  description="Taylor and Josh's wedding"
-  bodyClass="bg-base-content"
->
+<BaseLayout title="The Kolenkos" description="Taylor and Josh's wedding">
   <Nav />
   <main>
-    <div class="bg-base-content pt-18 md:pt-48 px-8 pb-20">
+    <Header>
       <h1 class="visually-hidden">The Kolenkos</h1>
       <p
-        class="font-serif text-center text-base-200 text-[clamp(1.75rem,4vw,3.5rem)] leading-[1.3em] tracking-tight md:max-w-full mx-auto"
+        class="font-serif text-center text-base-200 text-[clamp(1.75rem,3.5vw,3.5rem)] leading-[1.3em] tracking-tight md:max-w-full mx-auto"
       >
         You're invited to celebrate the wedding of <span class="lg:block">
           Taylor Diaz & Joshua Kolenko on September 17, 2026
@@ -29,14 +26,7 @@ import { EngagementCarousel } from "@/components/react/EngagementCarousel";
           class="underline underline-offset-6 decoration-3">Lakeside Gardens in Portland, Oregon.</a
         >
       </p>
-    </div>
-    <div
-      class="bg-base-content relative w-full h-32 md:h-[13.5vw] overflow-hidden lg:overflow-visible -mt-[1px]"
-    >
-      <Mountain
-        class="min-w-5xl w-full absolute lg:relative left-1/2 lg:left-0 -translate-x-1/2 lg:translate-0 fill-base-200 top-[1px]"
-      />
-    </div>
+    </Header>
     <div class="bg-base-200 relative z-10 text-center pt-16 md:pt-28 pb-30 md:pb-46">
       <div class="px-8">
         <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl mb-12 md:mb-16 lg:mb-20">
@@ -74,16 +64,11 @@ import { EngagementCarousel } from "@/components/react/EngagementCarousel";
         </div>
       </div>
     </div>
-    <div class="bg-base-200 relative w-full h-24 lg:h-[7.5vw] overflow-hidden -mb-[1px]">
-      <Hills
-        class="min-w-5xl w-full absolute lg:relative left-1/2 lg:left-0 -translate-x-1/2 lg:translate-0 fill-primary top-[1px]"
-      />
-    </div>
-    <div class="bg-primary pt-10 px-12 pb-30 flex flex-col">
-      <h2 class="font-serif text-center text-4xl md:text-5xl text-balance mb-10">
-        We'd love if you could join us.
-      </h2>
-      <a class="btn btn-neutral btn-lg w-full md:max-w-80 mx-auto" href="/rsvp">RSVP</a>
-    </div>
   </main>
+  <Footer>
+    <h2 class="font-serif text-center text-4xl md:text-5xl text-balance mb-10">
+      We'd love if you could join us.
+    </h2>
+    <a class="btn btn-neutral btn-lg w-full md:max-w-80 mx-auto" href="/rsvp">RSVP</a>
+  </Footer>
 </BaseLayout>

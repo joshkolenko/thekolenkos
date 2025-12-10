@@ -21,7 +21,6 @@ const { title, description, bodyClass } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#344e41" />
     <meta property="og:image" content="https://www.thekolenkos.com/og.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="675" />
@@ -31,7 +30,7 @@ const { title, description, bodyClass } = Astro.props;
     <link rel="preload" as="font" type="font/woff2" href={playfair} crossorigin="anonymous" />
     <title>{title}</title>
   </head>
-  <body class={clsx("bg-base-200", bodyClass)}>
+  <body class={clsx("bg-base-content", bodyClass)}>
     <slot />
   </body>
 </html>

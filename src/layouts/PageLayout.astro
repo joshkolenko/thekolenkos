@@ -1,0 +1,25 @@
+---
+import Footer from "@/components/astro/Footer.astro";
+import Header from "@/components/astro/Header.astro";
+import Nav from "@/components/astro/Nav.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import clsx from "clsx";
+
+const { title, description, wrapperClass } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <Nav />
+  <Header />
+  <main class="bg-base-200">
+    <div
+      class={clsx(
+        "px-8 pt-16 pb-24 md:pt-20 md:pb-32 lg:pt-24 lg:pb-40 md:max-w-5xl mx-auto",
+        wrapperClass
+      )}
+    >
+      <slot />
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

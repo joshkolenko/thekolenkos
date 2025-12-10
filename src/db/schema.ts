@@ -1,6 +1,6 @@
-import { boolean, pgTable, serial, varchar } from 'drizzle-orm/pg-core';
+import { boolean, pgTable, serial, varchar } from "drizzle-orm/pg-core";
 
-export const rsvpTable = pgTable('rsvp', {
+export const rsvpTable = pgTable("rsvp", {
   id: serial().primaryKey(),
   name: varchar({ length: 255 }).notNull(),
   email: varchar({ length: 255 }).notNull(),
@@ -11,4 +11,4 @@ export const rsvpTable = pgTable('rsvp', {
   guestName: varchar({ length: 255 }),
 });
 
-export type Rsvp = Omit<typeof rsvpTable.$inferSelect, 'id'>;
+export type Rsvp = typeof rsvpTable.$inferSelect;
