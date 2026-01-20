@@ -76,18 +76,18 @@ export function EngagementCarousel() {
               );
             })}
           </div>
-          <div className="absolute inset-0 flex items-center justify-between px-2 md:px-6 pointer-events-none">
+          <div className="absolute inset-0 flex items-center justify-between px-3 md:px-6 pointer-events-none">
             <button
-              className="pointer-events-auto btn btn-circle btn-sm md:btn-md btn-neutral"
+              className="pointer-events-auto btn btn-square btn-xs md:btn-md btn-neutral"
               onClick={() => emblaApi?.scrollPrev()}
             >
-              <i className="ph-fill ph-caret-left text-xl" />
+              <i className="ph-fill ph-caret-left md:text-xl" />
             </button>
             <button
-              className="pointer-events-auto btn btn-circle btn-sm md:btn-md btn-neutral"
+              className="pointer-events-auto btn btn-square btn-xs md:btn-md btn-neutral"
               onClick={() => emblaApi?.scrollNext()}
             >
-              <i className="ph-fill ph-caret-right text-xl" />
+              <i className="ph-fill ph-caret-right md:text-xl" />
             </button>
           </div>
         </>
