@@ -31,7 +31,6 @@ export function EngagementCarousel() {
   }, [emblaApi]);
 
   const onInit = useCallback(() => {
-    console.log("Embla initialized");
     setLoaded(true);
   }, []);
 
@@ -51,29 +50,47 @@ export function EngagementCarousel() {
   }, [emblaApi, onSelect, onInit]);
 
   return (
-    <div className="embla h-[400px] md:h-[600px]" ref={emblaRef}>
+    <div className="embla h-[400px] md:h-[600px] relative" ref={emblaRef}>
       {!loaded ? (
-        <div></div>
-      ) : (
-        <div className="embla__container animate-fade h-full">
-          {images.map((image, i) => {
-            return (
-              <div
-                key={i}
-                className={clsx(
-                  "flex-none h-full transition-opacity duration-500",
-                  i === selectedIndex ? "opacity-100" : "opacity-50"
-                )}
-              >
-                <img
-                  src={image.src}
-                  alt={`Engagement image ${i + 1}`}
-                  className="h-full w-auto object-cover pointer-events-none select-none"
-                />
-              </div>
-            );
-          })}
+        <div className="h-full flex items-center justify-center">
+          <div className="loading loading-spinner"></div>
         </div>
+      ) : (
+        <>
+          <div className="embla__container animate-carousel-fade-in h-full">
+            {images.map((image, i) => {
+              return (
+                <div
+                  key={i}
+                  className={clsx(
+                    "flex-none h-full transition-opacity duration-500",
+                    i === selectedIndex ? "opacity-100" : "opacity-50"
+                  )}
+                >
+                  <img
+                    src={image.src}
+                    alt={`Engagement image ${i + 1}`}
+                    className="h-full w-auto object-cover pointer-events-none select-none"
+                  />
+                </div>
+              );
+            })}
+          </div>
+          <div className="absolute inset-0 flex items-center justify-between px-2 md:px-6 pointer-events-none">
+            <button
+              className="pointer-events-auto btn btn-circle btn-sm md:btn-md btn-neutral"
+              onClick={() => emblaApi?.scrollPrev()}
+            >
+              <i className="ph-fill ph-caret-left text-xl" />
+            </button>
+            <button
+              className="pointer-events-auto btn btn-circle btn-sm md:btn-md btn-neutral"
+              onClick={() => emblaApi?.scrollNext()}
+            >
+              <i className="ph-fill ph-caret-right text-xl" />
+            </button>
+          </div>
+        </>
       )}
     </div>
   );

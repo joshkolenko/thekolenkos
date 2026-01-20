@@ -1,10 +1,11 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Nav from "../components/astro/Nav.astro";
-import Mountain from "@/svg/mountain.svg";
 
-import Heart10 from "@/svg/hearts/heart-10.svg";
 import { EngagementCarousel } from "@/components/react/EngagementCarousel";
+
+import Champagne from "@/svg/champagne.svg";
+import Heart10 from "@/svg/hearts/heart-10.svg";
 import Footer from "@/components/astro/Footer.astro";
 import Header from "@/components/astro/Header.astro";
 ---
@@ -27,15 +28,29 @@ import Header from "@/components/astro/Header.astro";
         >
       </p>
     </Header>
-    <div class="bg-base-200 relative z-10 text-center pt-16 md:pt-28 pb-30 md:pb-46">
+    <div class="bg-base-200 relative z-10 text-center pb-30 md:pb-46">
       <div class="px-8">
-        <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl mb-12 md:mb-16 lg:mb-20">
+        <div class="w-80 mx-auto mb-4">
+          <Champagne class="block fill-primary" />
+        </div>
+        <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl mb-6 lg:mb-10">
           We're getting married!
         </h2>
+        <p class="text-xl lg:text-2xl">
+          After 9 wonderful years together, we're finally tying the knot!
+        </p>
+      </div>
+      <div class="divider max-w-1/2 md:max-w-100 mx-auto my-12 md:my-24"></div>
+      <div class="px-8 mb-16">
+        <h3 class="font-serif text-3xl md:text-4xl lg:text-5xl mb-6 lg:mb-10">The Engagement</h3>
+        <p class="text-xl lg:text-2xl">
+          We got engaged on December 27, 2024 as a family Christmas finale.
+        </p>
       </div>
       <div class="mx-auto">
         <EngagementCarousel client:load />
       </div>
+      <div class="divider max-w-1/2 md:max-w-100 mx-auto my-12 md:my-24"></div>
       <div
         class="grid gap-16 md:gap-4 grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-center justify-items-center mt-30 md:mt-48 max-w-[1600px] mx-auto px-10"
       >
@@ -44,7 +59,7 @@ import Header from "@/components/astro/Header.astro";
             When
           </h3>
           <p
-            class="font-serif text-4xl md:text-4xl lg:text-5xl xl:text-6xl text-base-content leading-13 xl:leading-20 -tracking-[0.0125em]"
+            class="font-serif text-4xl md:text-4xl lg:text-5xl text-base-content leading-13 lg:leading-16 -tracking-[0.0125em]"
           >
             Thursday <br /> September 17, 2026 <br /> 5:30pm
           </p>
@@ -57,7 +72,7 @@ import Header from "@/components/astro/Header.astro";
             Where
           </h3>
           <p
-            class="font-serif text-4xl md:text-4xl lg:text-5xl xl:text-6xl text-base-content leading-13 xl:leading-20 -tracking-[0.0125em]"
+            class="font-serif text-4xl md:text-4xl lg:text-5xl text-base-content leading-13 lg:leading-16 -tracking-[0.0125em]"
           >
             Lakeside Gardens <br /> 16211 SE Foster Rd <br /> Portland, OR 97236
           </p>
