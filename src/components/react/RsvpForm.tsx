@@ -1,6 +1,6 @@
 import type { Rsvp } from "../../db/schema";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useForm } from "@tanstack/react-form";
 
 import FormError from "./FormError";
@@ -34,8 +34,6 @@ export default function RsvpForm() {
 
         if (!value.phone) {
           errors["phone"] = "Phone is required";
-        } else if (!/^\+?[1-9]\d{1,14}$/.test(value.phone)) {
-          errors["phone"] = "Phone number is invalid";
         }
 
         if (Object.keys(errors).length) {
