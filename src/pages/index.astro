@@ -8,44 +8,45 @@ import Champagne from "@/svg/champagne.svg";
 import Heart10 from "@/svg/hearts/heart-10.svg";
 import Footer from "@/components/astro/Footer.astro";
 import Header from "@/components/astro/Header.astro";
+import PageLayout from "@/layouts/PageLayout.astro";
 ---
 
-<BaseLayout title="The Kolenkos" description="Taylor and Josh's wedding">
+<PageLayout title="The Kolenkos" description="Taylor and Josh's wedding" headerSlot={} />
+
+<BaseLayout>
   <Nav />
   <main>
     <Header>
-      <h1 class="visually-hidden">The Kolenkos</h1>
-      <p
-        class="font-serif text-center text-base-200 text-[clamp(1.75rem,3.5vw,3.5rem)] leading-[1.3em] tracking-tight max-w-[44ch] mx-auto"
-      >
-        You're invited to celebrate the wedding of <span class="lg:block">
-          Taylor Diaz & Joshua Kolenko on September 17, 2026
-        </span> at <a
-          href="https://g.co/kgs/DBe6S4a"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="underline underline-offset-6 decoration-3">Lakeside Gardens in Portland, Oregon.</a
+      <div>
+        <h1 class="visually-hidden">The Kolenkos</h1>
+        <p
+          class="font-serif text-center text-base-200 text-[clamp(1.75rem,3.5vw,3.5rem)] leading-[1.3em] tracking-tight max-w-[44ch] mx-auto"
         >
-      </p>
+          You're invited to celebrate the wedding of{" "}
+          <span class="lg:block">Taylor Diaz & Joshua Kolenko on September 17, 2026</span> at{" "}
+          <a
+            href="https://g.co/kgs/DBe6S4a"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="underline underline-offset-6 decoration-3"
+          >
+            Lakeside Gardens in Portland, Oregon.
+          </a>
+        </p>
+      </div>
     </Header>
     <div class="bg-base-200 relative z-10 text-center pb-30 md:pb-46">
-      <div class="px-8">
+      <div class="px-8 prose mx-auto">
         <div class="w-80 mx-auto mb-4">
           <Champagne class="block fill-primary" />
         </div>
-        <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl mb-6 lg:mb-10">
-          We're getting married!
-        </h2>
-        <p class="text-xl lg:text-2xl">
-          After 9 wonderful years together, we're finally tying the knot!
-        </p>
+        <h2 class="mt-0">We're getting married!</h2>
+        <p>After 9 wonderful years together, we're finally tying the knot!</p>
       </div>
       <div class="divider max-w-1/2 md:max-w-100 mx-auto my-12 md:my-24"></div>
-      <div class="px-8 mb-16">
-        <h3 class="font-serif text-3xl md:text-4xl lg:text-5xl mb-6 lg:mb-10">The Engagement</h3>
-        <p class="text-xl lg:text-2xl">
-          We got engaged on December 28, 2024 as a family Christmas finale.
-        </p>
+      <div class="px-8 mb-16 prose mx-auto">
+        <h2>The Engagement</h2>
+        <p>We got engaged on December 28, 2024 as a family Christmas finale.</p>
       </div>
       <div class="mx-auto">
         <EngagementCarousel client:load />

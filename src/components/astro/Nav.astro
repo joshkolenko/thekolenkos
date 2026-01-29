@@ -2,11 +2,12 @@
 import MenuIcon from "@/svg/menu.svg";
 import clsx from "clsx";
 
-import { SignedIn, SignOutButton } from "@clerk/astro/components";
+import { SignedIn, SignedOut, SignInButton, SignOutButton } from "@clerk/astro/components";
 
 const links: { href: string; text: string; active?: boolean }[] = [
   { href: "/", text: "Home" },
   { href: "/rsvp", text: "RSVP" },
+  { href: "/plan", text: "Plan your visit" },
 ];
 
 links.map(link => link.href === Astro.url.pathname && (link.active = true));
@@ -78,6 +79,11 @@ const { isLight } = Astro.props;
               <button class="mt-10 btn btn-primary w-full">Log out</button>
             </SignOutButton>
           </SignedIn>
+          <SignedOut>
+            <SignInButton asChild>
+              <button class="mt-10 btn btn-primary w-full">Log in</button>
+            </SignInButton>
+          </SignedOut>
         </div>
       </div>
     </div>
