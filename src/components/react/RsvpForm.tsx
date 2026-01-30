@@ -251,6 +251,7 @@ export default function RsvpForm() {
                   <textarea
                     id="message"
                     name={field.name}
+                    maxLength={2000}
                     className="textarea h-24 w-full pr-23"
                     onChange={e => field.handleChange(e.target.value)}
                   />

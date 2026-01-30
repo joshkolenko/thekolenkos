@@ -5,7 +5,7 @@ export const rsvpTable = pgTable("rsvp", {
   name: varchar({ length: 255 }).notNull(),
   email: varchar({ length: 255 }).notNull(),
   phone: varchar({ length: 255 }).notNull(),
-  message: varchar({ length: 255 }),
+  message: varchar({ length: 2000 }),
   attending: boolean().notNull().default(true),
   guest: boolean().notNull().default(false),
   guestName: varchar({ length: 255 }),

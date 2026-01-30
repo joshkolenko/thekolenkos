@@ -1,0 +1,1 @@
+ALTER TABLE "rsvp" ALTER COLUMN "message" SET DATA TYPE varchar(2000);
