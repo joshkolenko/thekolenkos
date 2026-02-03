@@ -1,0 +1,38 @@
+---
+import Prose from "@/components/astro/Prose.astro";
+import PageLayout from "@/layouts/PageLayout.astro";
+---
+
+<PageLayout title="Registry">
+  <h1 slot="header" class="text-center text-base-200 text-5xl md:text-6xl">Registry</h1>
+  <Prose>
+    <h2>Our Wedding Registry</h2>
+    <p>
+      We are so grateful for your love and support as we start our new life together. Your presence
+      at our wedding is the greatest gift of all. However, if you wish to honor us with a gift, we
+      have registered at Zola. Thank you for being part of our special day!
+    </p>
+    <div class="mt-12">
+      <div class="pt-8 pb-10 md:pt-12 md:pb-16 px-2.5 bg-white rounded-sm">
+        <a
+          class="zola-registry-embed"
+          href="www.zola.com/wedding/joshandtaylorseptember17"
+          data-registry-key="joshandtaylorseptember17">Our Zola Wedding Registry</a
+        >
+        <script>
+          // @ts-nocheck
+          !(function (e, t, n) {
+            var s,
+              a = e.getElementsByTagName(t)[0];
+            e.getElementById(n) ||
+              ((s = e.createElement(t)),
+              (s.id = n),
+              (s.async = !0),
+              (s.src = "https://widget.zola.com/js/widget.js"),
+              a.parentNode.insertBefore(s, a));
+          })(document, "script", "zola-wjs");
+        </script>
+      </div>
+    </div>
+  </Prose>
+</PageLayout>

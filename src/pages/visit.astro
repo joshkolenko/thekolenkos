@@ -1,0 +1,102 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+
+import clsx from "clsx";
+
+import PorterHotelImage from "@/images/porter-hotel.jpg";
+import HotelLuciaImage from "@/images/hotel-lucia.webp";
+import ResidenceInnImage from "@/images/residence-inn.webp";
+import Prose from "@/components/astro/Prose.astro";
+
+const hotels = [
+  {
+    name: "The Porter",
+    description:
+      "Chic, modern downtown Portland hotel with an upscale boutique vibe, close to the riverfront and city attractions.",
+    notes: [
+      '<span class="wght-600">Discounted rates available from Tuesday, September 15 - Saturday, September 20</span>',
+      "Wedding party is staying here",
+      "Overnight valet discounted to $35.00 per vehicle per night",
+      "25 minutes to venue by car",
+      "If booking doesn't work, call to book at 503-306-4800",
+      "Ask for the Diaz Kolenko Room Block or group code: 90A",
+    ],
+    image: PorterHotelImage.src,
+    link: "https://group.curiocollection.com/pekjl8",
+    badge: "Recommended",
+    badgeClass: "badge-neutral",
+  },
+  {
+    name: "Hotel Lucia",
+    description:
+      "Boutique hotel in downtown Portland with a modern feel, known for warm hospitality and art-filled, design.",
+    notes: [
+      "Central location, walking distance to restaurants, coffee, and city attractions",
+      "Cozy, curated atmosphere that feels like a personal getaway for guests",
+      "20 minutes to venue by car",
+    ],
+    image: HotelLuciaImage.src,
+    link: "https://www.hotellucia.com/",
+    badge: "Top rated",
+    badgeClass: "badge-accent",
+  },
+  // {
+  //   name: "Residence Inn",
+  //   notes: [
+  //     "Wedding party is staying here",
+  //     "Discounted rate available",
+  //     "25 minutes to venue by car",
+  //   ],
+  //   image: ResidenceInnImage.src,
+  //   link: "https://www.marriott.com/event-reservations/reservation-link.mi?id=1744152697575&key=CORP&guestreslink2=true&app=resvlink",
+  //   badge: "",
+  //   badgeClass: "badge-primary",
+  // },
+];
+---
+
+<PageLayout
+  title="Plan your visit"
+  description="Information to help you plan your visit to Taylor and Josh's wedding"
+>
+  <h1 slot="header" class="text-center text-base-200 text-5xl md:text-6xl">Plan your visit</h1>
+  <Prose>
+    <h2>Places to stay</h2>
+    <p>Here are a few hotel options we recommend:</p>
+  </Prose>
+  <div class="flex flex-col gap-4">
+    {
+      hotels.map(hotel => (
+        <div class="card sm:card-side bg-base-100 shadow-sm join-item min-w-60">
+          <figure class="aspect-square sm:max-w-50 md:max-w-80 min-w-70">
+            <img src={hotel.image} alt={hotel.name} class="h-full w-full object-cover" />
+          </figure>
+          {hotel.badge && (
+            <div class={clsx("badge absolute top-4 left-4 z-10", hotel.badgeClass)}>
+              {hotel.badge}
+            </div>
+          )}
+          <div class="card-body">
+            <h2 class="card-title">{hotel.name}</h2>
+            <p class="mb-4 text-balance grow-0">{hotel.description}</p>
+            <ul class="mb-auto">
+              {hotel.notes.map(note => (
+                <li class="list-disc list-inside wght-400 text-balance" set:html={note} />
+              ))}
+            </ul>
+            <div class="card-actions justify-end">
+              <a
+                href={hotel.link}
+                class="btn btn-primary"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Book Now
+              </a>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</PageLayout>
