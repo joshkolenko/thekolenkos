@@ -2,16 +2,11 @@
 import MenuIcon from "@/svg/menu.svg";
 import clsx from "clsx";
 
-import { SignedIn, SignOutButton } from "@clerk/astro/components";
-
-const links: { href: string; text: string; active?: boolean }[] = [
-  { href: "/", text: "Home" },
-  { href: "/rsvp", text: "RSVP" },
-];
-
-links.map(link => link.href === Astro.url.pathname && (link.active = true));
+import { SignedIn, SignedOut, SignInButton, SignOutButton } from "@clerk/astro/components";
+import { links } from "@/config/nav.ts";
 
 const { isLight } = Astro.props;
+const pathname = Astro.url.pathname;
 ---
 
 <nav
@@ -50,7 +45,7 @@ const { isLight } = Astro.props;
                   href={link.href}
                   class={clsx(
                     'relative font-serif text-3xl sm:text-4xl py-5 px-0 block text-base-200 after:content-[""] after:absolute after:left-0 after:bottom-2 after:w-full after:h-0.75 after:bg-base-200 hover:after:scale-x-20 after:scale-x-0 after:origin-top-left after:transition-transform after:duration-300',
-                    link.active && "after:scale-x-30 pointer-events-none"
+                    link.href === pathname && "after:scale-x-30 pointer-events-none"
                   )}
                 >
                   {link.text}
@@ -78,6 +73,11 @@ const { isLight } = Astro.props;
               <button class="mt-10 btn btn-primary w-full">Log out</button>
             </SignOutButton>
           </SignedIn>
+          <SignedOut>
+            <SignInButton asChild>
+              <button class="mt-10 btn btn-primary w-full">Log in</button>
+            </SignInButton>
+          </SignedOut>
         </div>
       </div>
     </div>

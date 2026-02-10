@@ -70,7 +70,7 @@ export function EngagementCarousel() {
                   <img
                     src={image.src}
                     alt={`Engagement image ${i + 1}`}
-                    className="h-full w-auto object-cover pointer-events-none select-none"
+                    className="h-full w-auto object-cover pointer-events-none select-none mt-0! mb-0!"
                   />
                 </div>
               );

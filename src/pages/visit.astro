@@ -1,0 +1,320 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+
+import clsx from "clsx";
+
+import PorterHotelImage from "@/images/porter-hotel.jpg";
+import HotelLuciaImage from "@/images/hotel-lucia.webp";
+import Airbnb from "@/svg/airbnb.svg";
+import Vrbo from "@/svg/vrbo.svg";
+
+import Prose from "@/components/astro/Prose.astro";
+
+const hotels = [
+  {
+    name: "The Porter",
+    description:
+      "Chic, modern downtown Portland hotel with an upscale boutique vibe, close to the riverfront and city attractions.",
+    notes: [
+      '<span class="wght-600">Discounted rates available from Tuesday, September 15 - Saturday, September 20</span>',
+      "Wedding party is staying here",
+      "Overnight valet discounted to $35.00 per vehicle per night",
+      "25 minutes to venue by car",
+      "If booking doesn't work, call to book at 503-306-4800",
+      "Ask for the Diaz Kolenko Room Block or group code: 90A",
+    ],
+    image: PorterHotelImage.src,
+    link: "https://group.curiocollection.com/pekjl8",
+    badge: "Recommended",
+    badgeClass: "badge-neutral",
+  },
+  {
+    name: "Hotel Lucia",
+    description:
+      "Boutique hotel in downtown Portland with a modern feel, known for warm hospitality and art-filled, design.",
+    notes: [
+      "Central location, walking distance to restaurants, coffee, and city attractions",
+      "Cozy, curated atmosphere that feels like a personal getaway for guests",
+      "20 minutes to venue by car",
+    ],
+    image: HotelLuciaImage.src,
+    link: "https://www.hotellucia.com/",
+    badge: "Top rated",
+    badgeClass: "badge-accent",
+  },
+];
+
+const stayOptions = [
+  {
+    name: "Airbnb",
+    logo: Airbnb,
+    description:
+      "There are many great Airbnbs in the Portland area. This link will take you to a search with the wedding dates and location pre-filled.",
+    link: "https://www.airbnb.com/s/Portland--Oregon--United-States/homes?place_id=ChIJJ3SpfQsLlVQRkYXR9ua5Nhw&checkin=2026-09-15&checkout=2026-09-19&date_picker_type=calendar&adults=2&guests=2&search_type=unknown&query=Portland,%20Oregon,%20United%20States&flexible_trip_lengths%5B%5D=one_week&monthly_start_date=2026-03-01&monthly_length=3&monthly_end_date=2026-06-01&search_mode=regular_search&price_filter_input_type=2&price_filter_num_nights=3&channel=EXPLORE&source=structured_search_input_header",
+  },
+  {
+    name: "VRBO",
+    logo: Vrbo,
+    description:
+      "VRBO is another great option for vacation rentals in the Portland area. This link will take you to a search with the wedding dates and location pre-filled.",
+    link: "https://www.vrbo.com/search?destination=Portland,%20Oregon,%20United%20States%20of%20America&regionId=2759&latLong=45.523064,-122.676483&flexibility=0_DAY&d1=2026-09-15&startDate=2026-09-15&d2=2026-09-19&endDate=2026-09-19&adults=2",
+  },
+];
+
+const transitOptions = [
+  {
+    name: "Airport Car Rentals",
+    description:
+      "Renting a car is a convenient option for getting around Portland and to the wedding venue. There are several rental car companies located at the Portland International Airport, as well as in downtown Portland. We recommend renting a car if you plan to explore the city or if you prefer the flexibility of having your own transportation.",
+    links: [
+      {
+        label: "Explore Rentals",
+        url: "https://www.expedia.com/carsearch?locn=Portland+(PDX+-+Portland+Intl.)&loc2=&date1=9/15/2026&date2=9/19/2026&d1=2026-09-15&d2=2026-09-19&ageInRange=true&aarpcr=off&vend=&pickupIATACode=PDX&dpln=5784656&returnIATACode=&drid1=&time1=1030AM&time2=1030AM&olat=&olon=&dlat=&dlon=&dagv=1&subm=1&fdrp=0&ttyp=2&acop=2&rdus=10&rdct=1&styp=4&rfrr=page.TravelGuides.Cars.Airport",
+      },
+    ],
+  },
+  {
+    name: "Turo",
+    description:
+      "Turo is a peer-to-peer car rental service that allows you to rent cars directly from local owners. It's a great option if you're looking for a wider variety of vehicles or if you want to support local car owners. You can find many cars available for rent in Portland through Turo.",
+    links: [
+      {
+        label: "Explore Turo",
+        url: "https://turo.com/us/en/search?age=30&country=US&defaultZoomLevel=11&deliveryLocationType=airport&endDate=09/19/2026&endTime=10:00&flexibleType=NOT_FLEXIBLE&isMapSearch=false&itemsPerPage=200&latitude=45.58977&location=PDX%20-%20Portland%20International%20Airport&locationType=AIRPORT&longitude=-122.59509&monthlyEndDate=05/23/2026&monthlyStartDate=02/23/2026&pickupType=ALL&placeId=ChIJ0SDcdKqglVQRPVwOOJN22ls&searchDurationType=DAILY&sortType=RELEVANCE&startDate=09/15/2026&startTime=10:00&useDefaultMaximumDistance=true",
+      },
+    ],
+  },
+  {
+    name: "Rideshares",
+    description:
+      "Rideshare services like Uber and Lyft are widely available in Portland and can be a convenient option for getting to and from the wedding venue. We recommend using a rideshare service if you don't want to rent a car or if you prefer not to drive.",
+    links: [
+      {
+        label: "Explore Uber",
+        url: "https://www.uber.com/global/en/cities/portland/",
+      },
+      {
+        label: "Explore Lyft",
+        url: "https://www.lyft.com/rider/cities/portland-oregon",
+      },
+    ],
+  },
+];
+
+const packingList = [
+  "Wedding Attire (cocktail attire, dress shoes/sandals/heels)",
+  "Driver License",
+  "Light, comfortable clothing (t-shirts, shorts, athletic attire)",
+  "Light jacket/sweatshirt/sweater for layering",
+  "Swimsuit(s) - Hotel has a pool",
+  "Sneakers/hiking boots",
+  "Sandals",
+  "Hat",
+  "Sunglasses",
+  "Sunscreen",
+  "Bug spray (for hiking)",
+  "Backpack",
+  "Umbrella (Portland is known to rain)",
+  "Reusable water bottle",
+  "Chargers for electronic devices",
+  "Toiletries, medications, personal items",
+];
+---
+
+<PageLayout
+  title="Plan your visit"
+  description="Information to help you plan your visit to Taylor and Josh's wedding"
+>
+  <h1 slot="header" class="text-center text-base-200 text-5xl md:text-6xl">Plan your visit</h1>
+  <Prose class="mb-16">
+    <h2>Places to stay</h2>
+    <p>We've curated a list of recommended hotels and other accommodation options for your stay.</p>
+  </Prose>
+  <Prose class="mb-8">
+    <h3>Hotels</h3>
+  </Prose>
+  <div class="grid gap-8 mb-14">
+    {
+      hotels.map(hotel => (
+        <div class="card card-lg sm:card-side bg-base-100 shadow-sm join-item min-w-60">
+          <figure class="aspect-square max-h-80 md:max-h-full w-full md:max-w-80">
+            <img src={hotel.image} alt={hotel.name} class="h-full w-full object-cover" />
+          </figure>
+          {hotel.badge && (
+            <div class={clsx("badge absolute top-4 left-4 z-10", hotel.badgeClass)}>
+              {hotel.badge}
+            </div>
+          )}
+          <div class="card-body">
+            <h2 class="card-title">{hotel.name}</h2>
+            <p class="mb-4 grow-0">{hotel.description}</p>
+            <details class="collapse collapse-plus bg-base-100 border-base-300 border">
+              <summary class="collapse-title font-semibold">Hotel details</summary>
+              <div class="collapse-content text-sm">
+                <ul class="mb-auto">
+                  {hotel.notes.map(note => (
+                    <li class="list-disc list-inside wght-400" set:html={note} />
+                  ))}
+                </ul>
+              </div>
+            </details>
+            <div class="card-actions justify-end">
+              <a
+                href={hotel.link}
+                class="btn btn-primary"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Book Now
+              </a>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+  <Prose class="mb-8">
+    <h3>Other options</h3>
+  </Prose>
+  <div class="join join-vertical md:join-horizontal">
+    {
+      stayOptions.map(option => (
+        <div class="card card-lg md:card-lg bg-base-100 shadow-sm join-item">
+          <div class="card-body">
+            <div class="w-36">
+              <option.logo class="w-full h-auto fill-primary" />
+            </div>
+            <p class="mb-4 grow-0">{option.description}</p>
+            <div class="card-actions justify-end">
+              <a
+                href={option.link}
+                class="btn btn-primary"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Explore {option.name}
+              </a>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+  <div class="divider my-20"></div>
+  <Prose class="mb-16">
+    <h2>Getting around</h2>
+    <p>
+      There are several transportation options available in Portland, including public transit,
+      rideshares and rental cars. The venue is located about 25 minutes from downtown Portland, so
+      we recommend renting a car or using a rideshare service to get to and from the wedding.
+    </p>
+  </Prose>
+  <div class="join join-vertical lg:join-horizontal">
+    {
+      transitOptions.map(option => (
+        <div class="card card-lg bg-base-100 shadow-sm join-item flex-1">
+          <div class="card-body justify-between">
+            <h2 class="card-title">{option.name}</h2>
+            <p class="mb-4 grow-0">{option.description}</p>
+            <div class="card-actions justify-end">
+              {option.links.map(link => (
+                <a
+                  href={link.url}
+                  class="btn btn-primary"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+  <div class="divider my-20"></div>
+  <Prose class="mb-16">
+    <h2>Packing list</h2>
+    <p>
+      To help you prepare for your trip, we've put together a packing list of recommended items to
+      bring with you to the wedding and for your stay in Portland. We recommend packing a mix of
+      comfortable, casual clothing for exploring the city and more formal attire for the wedding
+      events.
+    </p>
+  </Prose>
+  <div class="overflow-x-auto">
+    <table class="table md:table-lg">
+      <!-- head -->
+      <thead>
+        <tr>
+          <th> </th>
+          <th>Item</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          packingList.map((item, index) => (
+            <tr class="packing-row" data-packing-index={index}>
+              <th>
+                <label>
+                  <input type="checkbox" class="checkbox" data-packing-index={index} />
+                </label>
+              </th>
+              <td class="packing-item w-full">{item}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+  <Fragment slot="footer">
+    <h2 class="font-serif text-center text-4xl md:text-5xl text-balance mb-10">
+      We'd love if you could join us.
+    </h2>
+    <a class="btn btn-neutral btn-lg w-full md:max-w-80 mx-auto" href="/rsvp">RSVP</a>
+  </Fragment>
+</PageLayout>
+
+<script>
+  const storageKey = "packingListChecked";
+
+  const inputs = Array.from(
+    document.querySelectorAll<HTMLInputElement>("input[type=checkbox][data-packing-index]")
+  );
+
+  const saved = localStorage.getItem(storageKey);
+  const checked = saved ? JSON.parse(saved) : [];
+
+  inputs.forEach(input => {
+    const index = Number(input.dataset.packingIndex);
+
+    const save = () => {
+      checked[index] = input.checked;
+      localStorage.setItem(storageKey, JSON.stringify(checked));
+    };
+
+    if (checked[index]) {
+      input.checked = true;
+    }
+
+    input.addEventListener("change", save);
+
+    const row = document.querySelector<HTMLTableRowElement>(
+      `tr.packing-row[data-packing-index="${index}"]`
+    );
+
+    if (row) {
+      row.addEventListener("click", event => {
+        const target = event.target as HTMLElement | null;
+
+        if (target && target.closest("input[type=checkbox]")) {
+          return;
+        }
+
+        input.checked = !input.checked;
+        save();
+      });
+    }
+  });
+</script>

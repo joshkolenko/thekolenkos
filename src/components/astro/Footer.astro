@@ -2,11 +2,18 @@
 import Hills from "@/svg/hills.svg";
 ---
 
-<div class="bg-base-200 relative w-full h-24 lg:h-[7.5vw] overflow-hidden -my-[1px]">
-  <Hills
-    class="min-w-5xl w-full absolute lg:relative left-1/2 lg:left-0 -translate-x-1/2 lg:translate-0 fill-primary top-[1px]"
-  />
-</div>
-<div class="bg-primary pt-10 px-12 pb-30 flex flex-col">
-  <slot />
+<div class="relative bg-primary">
+  <div class="bg-base-200 relative w-full h-24 lg:h-[7.5vw] overflow-hidden -my-[1px]">
+    <Hills
+      class="min-w-5xl w-full absolute lg:relative left-1/2 lg:left-0 -translate-x-1/2 lg:translate-0 fill-primary top-[1px]"
+    />
+  </div>
+  <div class="pt-12 px-12 pb-24 flex flex-col">
+    <slot />
+  </div>
+  <div class="relative bg-transparent w-full h-24 lg:h-[7.5vw] overflow-hidden -my-[1px]">
+    <Hills
+      class="min-w-5xl w-full absolute lg:relative left-1/2 lg:left-0 -translate-x-1/2 lg:translate-0 fill-neutral top-[1px]"
+    />
+  </div>
 </div>

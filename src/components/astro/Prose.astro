@@ -1,0 +1,9 @@
+---
+import clsx from "clsx";
+
+const { class: className, ...rest } = Astro.props;
+---
+
+<div class={clsx("prose-lg md:prose-xl text-center text-pretty-fallback", className)} {...rest}>
+  <slot />
+</div>

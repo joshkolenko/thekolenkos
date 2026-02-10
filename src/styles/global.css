@@ -197,3 +197,27 @@ body {
   flex: 0 0 100%;
   min-width: 0;
 }
+
+.prose {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 500;
+  }
+}
+
+.card {
+  .card-actions {
+    margin-top: 1rem;
+  }
+}
+
+@supports selector(:has(*)) {
+  .packing-row:has(input:checked) .packing-item {
+    text-decoration: line-through;
+    opacity: 0.6;
+  }
+}
