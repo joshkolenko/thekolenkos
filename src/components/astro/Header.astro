@@ -2,10 +2,10 @@
 import Mountain from "@/svg/mountain.svg";
 import clsx from "clsx";
 
-const hasSlot = Astro.slots.has("default");
+const { hasSlot } = Astro.props;
 ---
 
-<div class={clsx("bg-base-content", hasSlot && "pt-18 md:pt-48 px-8 pb-20")}>
+<div class={clsx("bg-base-content", hasSlot && "px-8 py-20")}>
   <slot />
 </div>
 <div
