@@ -50,7 +50,10 @@ export function EngagementCarousel() {
   }, [emblaApi, onSelect, onInit]);
 
   return (
-    <div className="embla h-[400px] md:h-[600px] relative" ref={emblaRef}>
+    <div
+      className="embla h-[400px] md:h-[600px] relative md:m-8 border-t-4 border-b-4 border-neutral md:border-l-4 md:border-r-4"
+      ref={emblaRef}
+    >
       {!loaded ? (
         <div className="h-full flex items-center justify-center">
           <div className="loading loading-spinner"></div>
@@ -64,7 +67,7 @@ export function EngagementCarousel() {
                   key={i}
                   className={clsx(
                     "flex-none h-full transition-opacity duration-500",
-                    i === selectedIndex ? "opacity-100" : "opacity-50"
+                    i === selectedIndex ? "opacity-100" : "opacity-50 grayscale"
                   )}
                 >
                   <img

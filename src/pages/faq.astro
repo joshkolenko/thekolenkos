@@ -1,0 +1,110 @@
+---
+import Prose from "@/components/astro/Prose.astro";
+import PageLayout from "@/layouts/PageLayout.astro";
+
+const faq = [
+  {
+    question: "When is the RSVP deadline?",
+    answer: [
+      "Please submit the final RSVP by June 1, 2026 so we can get an accurate headcount. If you don’t RSVP we will assume you are not able to make it.",
+    ],
+  },
+  {
+    question: "When should I fly out?",
+    answer: [
+      "We recommend flying in on Tuesday, September 15th or Wednesday, September 16th to account for any flight delays or cancellations.",
+    ],
+  },
+  {
+    question: "Can we book Airbnb/Vrbo instead of a hotel?",
+    answer: [
+      "Totally fine - just make sure to do your research and read reviews for a good experience.",
+    ],
+  },
+  {
+    question: "Will transportation to the venue be provided? Will parking be available?",
+    answer: [
+      "Transportation will not be provided - we recommend you rent a car or Uber to the venue.",
+      "Parking is free at Venue.",
+    ],
+  },
+  {
+    question: "Can I bring a gift?",
+    answer: [
+      "Definitely not required but always appreciated! If you choose to send a gift to the bride and groom, please keep in mind that everyone (including the couple) will be traveling with limited luggage space so if you decide to choose a physical gift - mail to our address prior to the wedding.",
+      "There will be a card box for physical cards at the wedding reception as well.",
+    ],
+  },
+  {
+    question: "Is the wedding indoors or outdoors?",
+    answer: [
+      "Our wedding ceremony & cocktail hour will be outdoors (subject to change if rains).",
+      "Our wedding reception will be indoors. Dress accordingly.",
+    ],
+  },
+  {
+    question: "Is smoking allowed?",
+    answer: [
+      "Marijuana is not allowed on the premises. We risk losing our deposit if this rule is violated.",
+      "There are designated smoking areas for tobacco use outside the venue.",
+    ],
+  },
+  {
+    question: "Is outside alcohol allowed?",
+    answer: [
+      "Outside alcohol is not allowed on the premises. All alcohol will be provided by the venue.æ",
+    ],
+  },
+  {
+    question: "What will the weather be like?",
+    answer: [
+      "Weather will be high 70s with low of high 60’s.",
+      "It’s known to rain a lot in Portland.",
+    ],
+  },
+  {
+    question: "What time should I arrive?",
+    answer: ["Please arrive no later than 5:00 as the ceremony starts promptly at 5:30."],
+  },
+  {
+    question: "What time will the reception end?",
+    answer: [
+      "The last call for drinks will be at 10:30 PM and the venue officially closes at 11:00 PM.",
+    ],
+  },
+  {
+    question: "Do we need to bring anything for the wedding ceremony and reception?",
+    answer: ["Wallets, ID's, Medication (if needed)."],
+  },
+  {
+    question: "Is it okay to take pictures with our phones and cameras during the wedding?",
+    answer: [
+      "Yes! We would love for you to take photos during reception.",
+      "However, please refrain from taking photos during the ceremony (turn on silent).",
+    ],
+  },
+  {
+    question: "Whom should I contact with questions?",
+    answer: ["Text Taylor or Josh."],
+  },
+];
+---
+
+<PageLayout title="Registry">
+  <h1 slot="header" class="text-center text-base-200 text-5xl md:text-6xl">FAQ</h1>
+  <p class="mb-4 text-sm text-right wght-500">*Click on a question to reveal the answer.</p>
+  <div class="flex flex-col gap-2">
+    {
+      faq.map(({ question, answer }) => (
+        <details class="collapse collapse-plus bg-base-100 border-base-300 border">
+          <summary class="collapse-title wght-600">{question}</summary>
+          <div class="collapse-content">
+            {answer.map(a => (
+              <p>{a}</p>
+            ))}
+          </div>
+        </details>
+      ))
+    }
+  </div>
+</PageLayout>

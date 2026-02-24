@@ -209,10 +209,8 @@ body {
   }
 }
 
-.card {
-  .card-actions {
-    margin-top: 1rem;
-  }
+.card .card-actions {
+  margin-top: 1rem;
 }
 
 @supports selector(:has(*)) {

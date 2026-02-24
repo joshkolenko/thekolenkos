@@ -1,5 +1,6 @@
 import type { Rsvp } from "../../db/schema";
 
+import { actions } from "astro:actions";
 import { useState } from "react";
 import { useForm } from "@tanstack/react-form";
 
@@ -46,26 +47,17 @@ export default function RsvpForm() {
       },
     },
     onSubmit: async ({ value }) => {
-      try {
-        const result = await fetch("/api/rsvp", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(value),
+      const { error } = await actions.submitRsvp(value);
+
+      if (error) {
+        form.setErrorMap({
+          onSubmit: error.message,
         });
 
-        const data = await result.json();
-
-        if (data.success) {
-          setIsSubmitted(true);
-        } else {
-          alert("Error submitting form: " + (data.error || "Unknown error"));
-        }
-      } catch (error) {
-        console.error("Error submitting form:", error);
-        alert("Error submitting form");
+        return;
       }
+
+      setIsSubmitted(true);
     },
   });
 
@@ -261,11 +253,16 @@ export default function RsvpForm() {
             )}
           />
           <form.Subscribe
-            selector={state => [state.canSubmit, state.isSubmitting]}
-            children={([canSubmit, isSubmitting]) => (
-              <button type="submit" className="btn btn-accent mt-2" disabled={!canSubmit}>
-                {isSubmitting ? <div className="loading loading-sm loading-spinner" /> : "Submit"}
-              </button>
+            selector={state => [state.errorMap.onSubmit, state.canSubmit, state.isSubmitting]}
+            children={([onSubmitError, canSubmit, isSubmitting]) => (
+              <>
+                {typeof onSubmitError === "string" && (
+                  <div className="text-error mt-2">{onSubmitError}</div>
+                )}
+                <button type="submit" className="btn btn-accent mt-2" disabled={!canSubmit}>
+                  {isSubmitting ? <div className="loading loading-sm loading-spinner" /> : "Submit"}
+                </button>
+              </>
             )}
           />
         </div>

@@ -1,0 +1,126 @@
+---
+import Prose from "@/components/astro/Prose.astro";
+import PageLayout from "@/layouts/PageLayout.astro";
+
+const timelineSegments = [
+  {
+    time: "5:00 pm",
+    event: "Guests arrive",
+  },
+  {
+    time: "5:30 pm",
+    event: "Ceremony",
+  },
+  {
+    time: "6:00 pm",
+    event: "Cocktail hour & Photo-booth",
+  },
+  {
+    time: "7:00 pm",
+    event: "Buffet Dinner",
+  },
+  {
+    time: "8:00 pm",
+    event: "Toasts, Cake, & First Dance",
+  },
+  {
+    time: "8:30 pm–10:30 pm",
+    event: "Party",
+  },
+  {
+    time: "11:00 pm",
+    event: "Departure",
+  },
+];
+
+const dressCode = {
+  men: [
+    "Semi formal / beach formal",
+    "Formal pants and button-up shirt",
+    "Linen pants & linen shirts",
+    "Tan & white are acceptable",
+    "No jeans",
+    "Full suit optional",
+  ],
+  women: [
+    "Cocktail attire / semi-formal",
+    "Weather will be high 70s with a low in the mid/high 60s",
+    "Ladies — think summer chic",
+    "All colors & patterns accepted",
+    "No white ;) ",
+    "Cocktail dress, sundress, maxi dress, etc.",
+    "Overall vibe: dressier than a daytime garden party, but not as formal as black-tie",
+  ],
+};
+---
+
+<PageLayout title="Admin" description="Admin dashboard">
+  <h1 slot="header" class="text-center text-base-200 text-5xl md:text-6xl">Information</h1>
+  <div class="grid gap-4 md:gap-6 md:grid-cols-2">
+    <div class="card card-xl bg-base-100 shadow">
+      <div class="card-body">
+        <h2 class="card-title">
+          <i class="ph-bold ph-calendar" aria-hidden="true"></i>
+          When
+        </h2>
+        <p class="text-lg wght-700">Thursday, September 17, 2026</p>
+        <p class="">5:30pm</p>
+      </div>
+    </div>
+    <a
+      href="https://g.co/kgs/DBe6S4a"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="card card-xl bg-base-100 shadow"
+    >
+      <div class="card-body">
+        <h2 class="card-title">
+          <i class="ph-bold ph-map-pin" aria-hidden="true"></i>
+          Where
+        </h2>
+        <p class="text-lg wght-700">Lakeside Gardens</p>
+        <p>16211 SE Foster Rd, Portland, OR 97236</p>
+      </div>
+    </a>
+  </div>
+  <Prose class="mt-24 mb-12">
+    <h2>Itinerary</h2>
+  </Prose>
+  <ul class="timeline timeline-vertical">
+    {
+      timelineSegments.map((segment, index) => (
+        <li>
+          {index > 0 && <hr />}
+          <div class="timeline-start wght-700 m-6 text-lg md:text-2xl text-right">
+            {segment.time}
+          </div>
+          <div class="timeline-middle">
+            <div class="aspect-square flex items-center justify-center w-6 h-6 bg-base-100 rounded-full">
+              <i class="ph-fill ph-heart text-sm text-secondary" />
+            </div>
+          </div>
+          <div class="timeline-end m-6 text-lg md:text-2xl">{segment.event}</div>
+          {index < timelineSegments.length - 1 && <hr />}
+        </li>
+      ))
+    }
+  </ul>
+  <Prose class="mt-24 mb-12 prose-ul:list-disc prose-li:text-left prose-li:text-base">
+    <h2>Dress code</h2>
+    <div class="tabs tabs-lift">
+      <input type="radio" name="dress_code" class="tab" aria-label="Men" />
+      <div class="tab-content bg-base-100 border-base-300 p-6">
+        <ul>
+          {dressCode.men.map(item => <li>{item}</li>)}
+        </ul>
+      </div>
+
+      <input type="radio" name="dress_code" class="tab" aria-label="Women" checked />
+      <div class="tab-content bg-base-100 border-base-300 p-6">
+        <ul>
+          {dressCode.women.map(item => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+  </Prose>
+</PageLayout>
