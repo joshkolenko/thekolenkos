@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { actions } from "astro:actions";
 import clsx from "clsx";
 import EditableInput from "./EditableInput";
-import { a } from "motion/react-client";
 
 export default function ResponsesTable({ rsvps: initialRsvps }: { rsvps: Rsvp[] }) {
   const [rsvps, setRsvps] = useState<Rsvp[]>(initialRsvps);
@@ -92,7 +91,7 @@ export default function ResponsesTable({ rsvps: initialRsvps }: { rsvps: Rsvp[] 
       <p className="text-3xl text-center wght-600 mb-12">{totalAttending} guests attending</p>
       <ul className="list bg-base-100 rounded-lg">
         {rsvps
-          .sort((a, b) => a.name.localeCompare(b.name))
+          .sort((a, b) => b.created.getTime() - a.created.getTime())
           .map((rsvp, i) => {
             const formattedPhone = rsvp.phone.replace(
               /^(\+?1)?(\d{3})(\d{3})(\d{4})/,
@@ -174,7 +173,7 @@ export default function ResponsesTable({ rsvps: initialRsvps }: { rsvps: Rsvp[] 
                 <div>
                   <label className="label">Email</label>
                   <EditableInput
-                    value={activeRsvp.email || ""}
+                    value={activeRsvp.email}
                     onChange={value => {
                       updateRsvp(activeRsvp.id, { email: String(value) });
                     }}
@@ -184,7 +183,7 @@ export default function ResponsesTable({ rsvps: initialRsvps }: { rsvps: Rsvp[] 
                 <div>
                   <label className="label">Phone</label>
                   <EditableInput
-                    value={activeRsvp.phone || ""}
+                    value={activeRsvp.phone}
                     onChange={value => {
                       updateRsvp(activeRsvp.id, { phone: String(value) });
                     }}
@@ -194,7 +193,7 @@ export default function ResponsesTable({ rsvps: initialRsvps }: { rsvps: Rsvp[] 
                 <div>
                   <label className="label">Additional guests</label>
                   <EditableInput
-                    value={activeRsvp.numAdditionalGuests || 0}
+                    value={activeRsvp.numAdditionalGuests}
                     onChange={value => {
                       updateRsvp(activeRsvp.id, { numAdditionalGuests: value ? Number(value) : 0 });
                     }}

@@ -12,32 +12,31 @@ export default function EditableInput({
   className?: string;
   type?: string;
 }) {
-  const [editing, setEditing] = useState(false);
+  const [isEdited, setIsEdited] = useState(false);
   const [inputValue, setInputValue] = useState(value);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     setInputValue(value);
+    setIsEdited(false);
   }, [value]);
 
   useEffect(() => {
-    if (editing) {
-      const input = inputRef.current;
-
-      if (input) {
-        input.focus();
-      }
+    if (value !== inputValue) {
+      setIsEdited(true);
+    } else {
+      setIsEdited(false);
     }
-  }, [editing]);
+  }, [inputValue]);
 
   function handleSave() {
     onChange(inputValue);
-    setEditing(false);
+    setIsEdited(false);
   }
 
   function handleCancel() {
     setInputValue(value);
-    setEditing(false);
+    setIsEdited(false);
   }
 
   return (
@@ -45,15 +44,11 @@ export default function EditableInput({
       <input
         type={type}
         value={inputValue}
-        onChange={e => {
-          if (editing) {
-            setInputValue(e.target.value);
-          }
-        }}
+        onChange={e => setInputValue(e.target.value)}
         ref={inputRef}
       />
       <div className="flex gap-1">
-        {editing ? (
+        {isEdited && (
           <>
             <button
               type="button"
@@ -70,14 +65,6 @@ export default function EditableInput({
               <i className="ph-bold ph-x text-xl" />
             </button>
           </>
-        ) : (
-          <button
-            type="button"
-            className="btn btn-sm btn-ghost w-10 btn-square"
-            onClick={() => setEditing(true)}
-          >
-            <i className="ph-bold ph-pencil text-xl" />
-          </button>
         )}
       </div>
     </label>

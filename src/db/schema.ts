@@ -1,5 +1,5 @@
 import { z } from "astro/zod";
-import { boolean, pgTable, serial, varchar, jsonb, integer } from "drizzle-orm/pg-core";
+import { boolean, pgTable, serial, varchar, jsonb, integer, timestamp } from "drizzle-orm/pg-core";
 
 export const rsvpTable = pgTable("rsvp", {
   id: serial().primaryKey(),
@@ -11,6 +11,7 @@ export const rsvpTable = pgTable("rsvp", {
   guest: boolean().notNull().default(false),
   guestName: varchar({ length: 255 }),
   numAdditionalGuests: integer().notNull().default(0),
+  created: timestamp().notNull().defaultNow(),
 });
 
 export const settingsTable = pgTable("settings", {
