@@ -81,9 +81,10 @@ export default function ResponsesTable({ rsvps: initialRsvps }: { rsvps: Rsvp[] 
 
   function updateRsvp(id: number, data: Partial<Omit<Rsvp, "id">>) {
     actions.updateRsvp({ id, data });
-    setRsvps(
-      prevRsvps => prevRsvps?.map(rsvp => (rsvp.id === id ? { ...rsvp, ...data } : rsvp)) || null
-    );
+    const updatedRsvps = rsvps.map(rsvp => (rsvp.id === id ? { ...rsvp, ...data } : rsvp));
+
+    setRsvps(updatedRsvps.sort((a, b) => b.created.getTime() - a.created.getTime()));
+    setActiveRsvp(updatedRsvps.find(rsvp => rsvp.id === id) || null);
   }
 
   return (
@@ -126,6 +127,9 @@ export default function ResponsesTable({ rsvps: initialRsvps }: { rsvps: Rsvp[] 
                 <div className="wght-600">
                   <div>
                     {rsvp.name} {rsvp.guest && `& ${rsvp.guestName}`}
+                    {rsvp.numAdditionalGuests > 0 && (
+                      <span className="text-xs opacity-50"> +{rsvp.numAdditionalGuests}</span>
+                    )}
                   </div>
                   <div
                     className={clsx(
@@ -162,6 +166,9 @@ export default function ResponsesTable({ rsvps: initialRsvps }: { rsvps: Rsvp[] 
             <>
               <h3 className="wght-700 text-xl pr-10">
                 {activeRsvp.name} {activeRsvp.guest && `& ${activeRsvp.guestName}`}
+                {activeRsvp.numAdditionalGuests > 0 && (
+                  <span className="opacity-50"> +{activeRsvp.numAdditionalGuests}</span>
+                )}
               </h3>
               {activeRsvp.message && (
                 <blockquote className="my-4 p-4 bg-base-300/30 rounded">
