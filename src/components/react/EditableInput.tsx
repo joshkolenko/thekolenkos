@@ -41,13 +41,7 @@ export default function EditableInput({
   }
 
   return (
-    <label
-      className={clsx(
-        "input validator outline-none pr-1 w-full",
-        !editing && "pointer-events-none",
-        className
-      )}
-    >
+    <label className={clsx("input validator outline-none pr-1 w-full", className)}>
       <input
         type={type}
         value={inputValue}
@@ -79,7 +73,7 @@ export default function EditableInput({
         ) : (
           <button
             type="button"
-            className="btn btn-sm btn-ghost w-10 btn-square pointer-events-auto"
+            className="btn btn-sm btn-ghost w-10 btn-square"
             onClick={() => setEditing(true)}
           >
             <i className="ph-bold ph-pencil text-xl" />
