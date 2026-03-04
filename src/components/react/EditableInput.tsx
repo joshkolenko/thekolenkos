@@ -41,13 +41,22 @@ export default function EditableInput({
   }
 
   return (
-    <label className={clsx("input validator outline-none pr-1 w-full", className)}>
+    <label
+      className={clsx(
+        "input validator outline-none pr-1 w-full",
+        !editing && "pointer-events-none",
+        className
+      )}
+    >
       <input
         type={type}
         value={inputValue}
-        onChange={e => setInputValue(e.target.value)}
+        onChange={e => {
+          if (editing) {
+            setInputValue(e.target.value);
+          }
+        }}
         ref={inputRef}
-        readOnly={!editing}
       />
       <div className="flex gap-1">
         {editing ? (
@@ -70,7 +79,7 @@ export default function EditableInput({
         ) : (
           <button
             type="button"
-            className="btn btn-sm btn-ghost w-10 btn-square"
+            className="btn btn-sm btn-ghost w-10 btn-square pointer-events-auto"
             onClick={() => setEditing(true)}
           >
             <i className="ph-bold ph-pencil text-xl" />

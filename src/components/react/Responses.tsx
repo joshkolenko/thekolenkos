@@ -10,12 +10,11 @@ export default function ResponsesTable({ rsvps: initialRsvps }: { rsvps: Rsvp[] 
   const [activeRsvp, setActiveRsvp] = useState<Rsvp | null>(null);
   const [isHoldingDelete, setIsHoldingDelete] = useState(false);
   const [deleteProgress, setDeleteProgress] = useState(0);
-  const adjustment = 0;
 
   const totalAttending =
     rsvps.filter(rsvp => rsvp.attending).length +
     rsvps.filter(rsvp => rsvp.guest).length +
-    adjustment;
+    rsvps.reduce((total, rsvp) => total + rsvp.numAdditionalGuests, 0);
 
   useEffect(() => {
     let interval: NodeJS.Timeout | undefined;
