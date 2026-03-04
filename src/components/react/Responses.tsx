@@ -101,7 +101,11 @@ export default function ResponsesTable({ rsvps: initialRsvps }: { rsvps: Rsvp[] 
             );
 
             return (
-              <li className="list-row" key={i}>
+              <li
+                className="list-row hover:bg-base-300/10 cursor-pointer"
+                key={i}
+                onClick={() => openDialog(rsvp)}
+              >
                 <div className="avatar avatar-placeholder">
                   <div
                     className={clsx(
@@ -146,9 +150,6 @@ export default function ResponsesTable({ rsvps: initialRsvps }: { rsvps: Rsvp[] 
                 >
                   <i className="ph-fill ph-envelope" /> {rsvp.email.toLowerCase()}
                 </a>
-                <button className="btn btn-square btn-ghost" onClick={() => openDialog(rsvp)}>
-                  <i className="ph-bold ph-info text-2xl"></i>
-                </button>
               </li>
             );
           })}
