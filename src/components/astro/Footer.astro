@@ -14,9 +14,9 @@ const { hasSlot } = Astro.props;
   <div class={clsx(hasSlot && "pt-12 px-12 pb-24 flex flex-col")}>
     <slot />
   </div>
-  <div class="relative bg-transparent w-full h-24 lg:h-[7.5vw] overflow-hidden -my-[1px]">
+  <div class="relative bg-transparent w-full h-24 lg:h-[7.5vw] overflow-hidden -my-[1px] z-10">
     <Hills
-      class="min-w-5xl w-[150vw] reflex absolute lg:relative lg:left-0 lg:translate-0 fill-neutral -bottom-[1px]"
+      class="min-w-5xl w-[150vw] reflex absolute lg:relative lg:left-0 lg:translate-0 fill-neutral -top-[1px]"
     />
   </div>
 </div>

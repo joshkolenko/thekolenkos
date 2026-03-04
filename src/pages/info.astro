@@ -24,7 +24,7 @@ const timelineSegments = [
     event: "Toasts, Cake, & First Dance",
   },
   {
-    time: "8:30 pm–10:30 pm",
+    time: "8:30 pm-10:30 pm",
     event: "Party",
   },
   {
@@ -33,7 +33,9 @@ const timelineSegments = [
   },
 ];
 
-const dressCode = {
+const dressCode: {
+  [key: string]: string[];
+} = {
   men: [
     "Semi formal / beach formal",
     "Formal pants and button-up shirt",
@@ -57,7 +59,7 @@ const dressCode = {
 <PageLayout title="Admin" description="Admin dashboard">
   <h1 slot="header" class="text-center text-base-200 text-5xl md:text-6xl">Information</h1>
   <div class="grid gap-4 md:gap-6 md:grid-cols-2">
-    <div class="card card-xl bg-base-100 shadow">
+    <div class="card card-xl bg-base-100 rounded-md">
       <div class="card-body">
         <h2 class="card-title">
           <i class="ph-bold ph-calendar" aria-hidden="true"></i>
@@ -71,7 +73,7 @@ const dressCode = {
       href="https://g.co/kgs/DBe6S4a"
       target="_blank"
       rel="noopener noreferrer"
-      class="card card-xl bg-base-100 shadow"
+      class="card card-xl bg-base-100 rounded-md"
     >
       <div class="card-body">
         <h2 class="card-title">
@@ -108,19 +110,29 @@ const dressCode = {
   <Prose class="mt-24 mb-12 prose-ul:list-disc prose-li:text-left prose-li:text-base">
     <h2>Dress code</h2>
     <div class="tabs tabs-lift">
-      <input type="radio" name="dress_code" class="tab" aria-label="Men" />
-      <div class="tab-content bg-base-100 border-base-300 p-6">
-        <ul>
-          {dressCode.men.map(item => <li>{item}</li>)}
-        </ul>
-      </div>
-
-      <input type="radio" name="dress_code" class="tab" aria-label="Women" checked />
-      <div class="tab-content bg-base-100 border-base-300 p-6">
-        <ul>
-          {dressCode.women.map(item => <li>{item}</li>)}
-        </ul>
-      </div>
+      {
+        Object.keys(dressCode).map(key => (
+          <>
+            <input
+              type="radio"
+              name="dress_code"
+              class="tab border-transparent wght-700 rounded-tl-md rounded-tr-md"
+              aria-label={key
+                .split("")
+                .map((char, i) => (i === 0 ? char.toUpperCase() : char))
+                .join("")}
+              checked={key === "men"}
+            />
+            <div class="tab-content bg-base-100 border-transparent p-6 rounded-md">
+              <ul>
+                {dressCode[key].map(item => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+          </>
+        ))
+      }
     </div>
   </Prose>
 </PageLayout>

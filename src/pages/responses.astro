@@ -1,6 +1,6 @@
 ---
 import PageLayout from "@/layouts/PageLayout.astro";
-import ResponsesTable from "@/components/react/ResponsesTable";
+import ResponsesTable from "@/components/react/Responses";
 import { actions } from "astro:actions";
 
 export const prerender = false;
@@ -16,11 +16,12 @@ if (Astro.request.method === "POST") {
   return Astro.redirect(Astro.url.pathname);
 }
 
-const { data } = await Astro.callAction(actions.getRsvps, null);
-const rsvps = data?.rsvps ?? [];
+const { data: rsvpsData, error: rsvpsError } = await Astro.callAction(actions.getRsvps, null);
+
+const rsvps = rsvpsError ? [] : rsvpsData.value || [];
 ---
 
-<PageLayout title="Admin" description="Admin dashboard" wrapperClass="max-w-[1920px]!">
+<PageLayout title="Admin" description="Admin dashboard">
   <h1 slot="header" class="text-center text-base-200 text-5xl md:text-6xl">Responses</h1>
-  <ResponsesTable rsvps={rsvps} client:load />
+  <ResponsesTable rsvps={rsvps}  client:load />
 </PageLayout>

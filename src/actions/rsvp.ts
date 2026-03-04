@@ -21,10 +21,12 @@ export const submitRsvp = defineAction({
 export const getRsvps = defineAction({
   handler: async () => {
     try {
-      const rsvps = await rsvp.getAll();
-      return { rsvps };
+      return { value: await rsvp.getAll() };
     } catch (error) {
-      return { error };
+      throw new ActionError({
+        code: "BAD_REQUEST",
+        message: "Error fetching RSVPs",
+      });
     }
   },
 });
@@ -38,7 +40,28 @@ export const deleteRsvp = defineAction({
       await rsvp.delete(id);
       return { success: true };
     } catch (error) {
-      return { error };
+      throw new ActionError({
+        code: "BAD_REQUEST",
+        message: "Error deleting RSVP",
+      });
+    }
+  },
+});
+
+export const updateRsvp = defineAction({
+  input: z.object({
+    id: z.number(),
+    data: rsvpSchema.partial(),
+  }),
+  handler: async ({ id, data }) => {
+    try {
+      await rsvp.update(id, data);
+      return { success: true };
+    } catch (error) {
+      throw new ActionError({
+        code: "BAD_REQUEST",
+        message: "Error updating RSVP",
+      });
     }
   },
 });

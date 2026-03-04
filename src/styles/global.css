@@ -148,6 +148,14 @@
     font-size: 0.8rem;
   }
 
+  .btn-ghost {
+    border: none;
+  }
+
+  .btn-ghost:hover {
+    background: rgba(163, 177, 138, 0.2);
+  }
+
   @keyframes fade-in {
     0% {
       opacity: 0;
@@ -160,6 +168,10 @@
 
 @utility wght-* {
   font-variation-settings: "wght" --value(integer);
+}
+
+:root {
+  scrollbar-color: var(--color-primary) var(--color-base-200);
 }
 
 html {

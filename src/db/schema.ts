@@ -1,5 +1,5 @@
 import { z } from "astro/zod";
-import { boolean, pgTable, serial, varchar } from "drizzle-orm/pg-core";
+import { boolean, pgTable, serial, varchar, jsonb, integer } from "drizzle-orm/pg-core";
 
 export const rsvpTable = pgTable("rsvp", {
   id: serial().primaryKey(),
@@ -10,6 +10,13 @@ export const rsvpTable = pgTable("rsvp", {
   attending: boolean().notNull().default(true),
   guest: boolean().notNull().default(false),
   guestName: varchar({ length: 255 }),
+  numAdditionalGuests: integer().notNull().default(0),
+});
+
+export const settingsTable = pgTable("settings", {
+  id: serial().primaryKey(),
+  key: varchar({ length: 255 }).notNull().unique(),
+  value: jsonb().$type<string | number | boolean | null>().notNull(),
 });
 
 export const rsvpSchema = z.object({
@@ -20,6 +27,8 @@ export const rsvpSchema = z.object({
   attending: z.boolean().default(true),
   guest: z.boolean().default(false),
   guestName: z.union([z.string().max(255), z.null()]),
+  numAdditionalGuests: z.number().int().nonnegative().default(0),
 });
 
 export type Rsvp = typeof rsvpTable.$inferSelect;
+export type Settings = typeof settingsTable.$inferSelect;

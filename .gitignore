@@ -27,3 +27,4 @@ pnpm-debug.log*
 
 # non-bun package manager files
 .package-lock.json
+.env*.local
