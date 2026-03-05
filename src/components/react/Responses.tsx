@@ -143,12 +143,14 @@ export default function ResponsesTable({ rsvps: initialRsvps }: { rsvps: Rsvp[] 
                 <a
                   href={`tel:${formattedPhone}`}
                   className="hidden md:flex items-center gap-2 btn btn-ghost"
+                  onClick={e => e.stopPropagation()}
                 >
                   <i className="ph-fill ph-phone" /> {formattedPhone}
                 </a>
                 <a
                   href={`mailto:${rsvp.email}`}
                   className="hidden lg:flex items-center gap-2 btn btn-ghost"
+                  onClick={e => e.stopPropagation()}
                 >
                   <i className="ph-fill ph-envelope" /> {rsvp.email.toLowerCase()}
                 </a>
