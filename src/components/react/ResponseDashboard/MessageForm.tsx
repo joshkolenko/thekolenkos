@@ -30,7 +30,7 @@ export default function MessageForm({ rsvps }: { rsvps: Rsvp[] }) {
     },
     onSubmit: async ({ value }) => {
       const { error } = await actions.sendEmail({
-        to: ["jkolenko@proton.me"],
+        to: recipients.map(r => r.email),
         template: {
           id: "message",
           variables: {
