@@ -189,8 +189,8 @@ export default function ResponsesList({
             );
           })}
       </ul>
-      <dialog id="responses-dialog" className="modal" ref={dialogRef}>
-        <div className="modal-box rounded-md">
+      <dialog id="responses-dialog" className="modal p-2" ref={dialogRef}>
+        <div className="modal-box rounded-md max-h-full max-w-full w-min">
           <form method="dialog">
             <button className="btn btn-sm btn-square btn-ghost absolute right-2 top-2">✕</button>
           </form>

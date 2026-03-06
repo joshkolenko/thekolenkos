@@ -59,8 +59,8 @@ export default function MessageForm({ rsvps }: { rsvps: Rsvp[] }) {
       >
         {recipients.length === 0 ? "Add recipients" : `Recipients (${recipients.length})`}
       </button>
-      <dialog id="recipients-dialog" className="modal">
-        <div className="modal-box rounded-md">
+      <dialog id="recipients-dialog" className="modal p-2">
+        <div className="modal-box rounded-md max-h-full max-w-full">
           <form method="dialog">
             <button className="btn btn-sm btn-square btn-ghost absolute right-2 top-2">✕</button>
           </form>
@@ -76,12 +76,12 @@ export default function MessageForm({ rsvps }: { rsvps: Rsvp[] }) {
               Deselect all
             </button>
           </div>
-          <ul className="bg-base-100 rounded-box join-vertical">
+          <ul className="bg-base-100 rounded-box join-vertical max-h-90vh overflow-y-auto w-full">
             {rsvps
               .filter(rsvp => rsvp.attending)
               .map(rsvp => (
                 <li key={rsvp.id} className="py-1">
-                  <label className="label gap-2">
+                  <label className="label text-xs gap-2">
                     <input
                       type="checkbox"
                       className="checkbox checkbox-primary checkbox-sm peer"
@@ -107,7 +107,7 @@ export default function MessageForm({ rsvps }: { rsvps: Rsvp[] }) {
         </form>
       </dialog>
       <form
-        className="flex flex-col"
+        className="flex flex-col gap-4"
         onSubmit={e => {
           e.preventDefault();
           e.stopPropagation();
