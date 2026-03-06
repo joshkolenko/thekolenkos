@@ -6,7 +6,7 @@ export const getSettings = defineAction({
   handler: async () => {
     try {
       const allSettings = await settings.getAll();
-      return { settings: allSettings };
+      return { success: true, value: allSettings };
     } catch (error) {
       throw new ActionError({
         code: "BAD_REQUEST",
@@ -22,7 +22,7 @@ export const getSetting = defineAction({
   }),
   handler: async ({ key }) => {
     try {
-      return { value: await settings.get(key) };
+      return { success: true, value: await settings.get(key) };
     } catch (error) {
       throw new ActionError({
         code: "BAD_REQUEST",
@@ -40,7 +40,7 @@ export const setSetting = defineAction({
   handler: async ({ key, value }) => {
     try {
       await settings.set(key, value);
-      return { success: true };
+      return { success: true, value: null };
     } catch (error) {
       throw new ActionError({
         code: "BAD_REQUEST",

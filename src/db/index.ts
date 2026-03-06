@@ -7,7 +7,7 @@ import "dotenv/config";
 export const db = drizzle(process.env.DATABASE_URL!);
 
 export const rsvp = {
-  async create(rsvp: Omit<Rsvp, "id">) {
+  async create(rsvp: Omit<Rsvp, "id" | "created">) {
     return await db.insert(rsvpTable).values(rsvp);
   },
   async getAll() {
@@ -16,7 +16,7 @@ export const rsvp = {
   async delete(id: number) {
     return await db.delete(rsvpTable).where(eq(rsvpTable.id, id));
   },
-  async update(id: number, data: Partial<Omit<Rsvp, "id">>) {
+  async update(id: number, data: Partial<Omit<Rsvp, "id" | "created">>) {
     return await db.update(rsvpTable).set(data).where(eq(rsvpTable.id, id));
   },
 };

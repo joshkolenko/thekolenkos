@@ -2,13 +2,38 @@ import { ActionError, defineAction } from "astro:actions";
 import { z } from "astro/zod";
 import { rsvp } from "@/db";
 import { rsvpSchema } from "@/db/schema";
+import { Resend } from "resend";
 
 export const submitRsvp = defineAction({
-  input: rsvpSchema,
+  input: rsvpSchema.omit({ created: true }),
   handler: async input => {
     try {
       await rsvp.create(input);
-      return { success: true };
+      const resend = new Resend(process.env.RESEND_KEY!);
+      await resend.emails
+        .send({
+          to: ["jkolenko@proton.me", "taydiaz2266@gmail.com"],
+          subject: "New RSVP from " + input.name,
+          template: {
+            id: "new-rsvp",
+            variables: {
+              NAME: input.name,
+              EMAIL_ADDRESS: input.email,
+              PHONE: input.phone,
+              ATTENDING: input.attending ? "Yes" : "No",
+              GUEST: input.guest
+                ? `Bringing a guest (${input.guestName || "No name provided"})`
+                : "No guest",
+              MESSAGE: input.message || "No message provided",
+            },
+          },
+        })
+        .catch(error => {
+          console.error("Error sending email:", error);
+          return { error };
+        });
+
+      return { success: true, value: null };
     } catch (error) {
       throw new ActionError({
         code: "BAD_REQUEST",
@@ -21,7 +46,7 @@ export const submitRsvp = defineAction({
 export const getRsvps = defineAction({
   handler: async () => {
     try {
-      return { value: await rsvp.getAll() };
+      return { success: true, value: await rsvp.getAll() };
     } catch (error) {
       throw new ActionError({
         code: "BAD_REQUEST",
@@ -38,7 +63,7 @@ export const deleteRsvp = defineAction({
   handler: async ({ id }) => {
     try {
       await rsvp.delete(id);
-      return { success: true };
+      return { success: true, value: null };
     } catch (error) {
       throw new ActionError({
         code: "BAD_REQUEST",
@@ -56,7 +81,7 @@ export const updateRsvp = defineAction({
   handler: async ({ id, data }) => {
     try {
       await rsvp.update(id, data);
-      return { success: true };
+      return { success: true, value: null };
     } catch (error) {
       throw new ActionError({
         code: "BAD_REQUEST",

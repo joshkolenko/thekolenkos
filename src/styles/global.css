@@ -138,6 +138,40 @@
     border-style: solid;
   }
 
+  .btn:focus,
+  .btn:focus-visible,
+  .btn:focus-within,
+  .input:focus,
+  .input:focus-visible,
+  .input:focus-within,
+  .label:focus,
+  .label:focus-visible,
+  .label:focus-within,
+  .select:focus,
+  .select:focus-visible,
+  .select:focus-within,
+  .textarea:focus,
+  .textarea:focus-visible,
+  .textarea:focus-within {
+    outline-width: 1px;
+    outline-offset: 0;
+  }
+
+  .hide-spin-buttons {
+    /* Hide spin buttons in WebKit browsers */
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Hide spin buttons in Firefox */
+    &[type="number"] {
+      appearance: none;
+      -moz-appearance: textfield;
+    }
+  }
+
   .animate-carousel-fade-in {
     opacity: 0;
     animation: fade-in 300ms ease-in-out forwards;

@@ -12,6 +12,7 @@ export const rsvpTable = pgTable("rsvp", {
   guestName: varchar({ length: 255 }),
   numAdditionalGuests: integer().notNull().default(0),
   created: timestamp().notNull().defaultNow(),
+  notes: varchar({ length: 2000 }).default(""),
 });
 
 export const settingsTable = pgTable("settings", {
@@ -29,6 +30,8 @@ export const rsvpSchema = z.object({
   guest: z.boolean().default(false),
   guestName: z.union([z.string().max(255), z.null()]),
   numAdditionalGuests: z.number().int().nonnegative().default(0),
+  created: z.date(),
+  notes: z.union([z.string().max(2000), z.null()]).default(""),
 });
 
 export type Rsvp = typeof rsvpTable.$inferSelect;

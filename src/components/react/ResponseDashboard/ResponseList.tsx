@@ -1,19 +1,21 @@
 import type { Rsvp } from "@/db/schema";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { actions } from "astro:actions";
 import clsx from "clsx";
-import EditableInput from "./EditableInput";
+import EditableInput from "../EditableInput";
 
-export default function ResponsesTable({ rsvps: initialRsvps }: { rsvps: Rsvp[] }) {
-  const [rsvps, setRsvps] = useState<Rsvp[]>(initialRsvps);
+export default function ResponsesList({
+  rsvps,
+  setRsvps,
+}: {
+  rsvps: Rsvp[];
+  setRsvps: React.Dispatch<React.SetStateAction<Rsvp[]>>;
+}) {
   const [activeRsvp, setActiveRsvp] = useState<Rsvp | null>(null);
   const [isHoldingDelete, setIsHoldingDelete] = useState(false);
   const [deleteProgress, setDeleteProgress] = useState(0);
-
-  const totalAttending =
-    rsvps.filter(rsvp => rsvp.attending).length +
-    rsvps.filter(rsvp => rsvp.guest).length +
-    rsvps.reduce((total, rsvp) => total + rsvp.numAdditionalGuests, 0);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const deleteButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     let interval: NodeJS.Timeout | undefined;
@@ -45,6 +47,37 @@ export default function ResponsesTable({ rsvps: initialRsvps }: { rsvps: Rsvp[] 
     };
   }, [isHoldingDelete]);
 
+  useEffect(() => {
+    const button = deleteButtonRef.current;
+    if (!button) return;
+
+    const handleStart = (e: Event) => {
+      e.preventDefault();
+      setIsHoldingDelete(true);
+    };
+
+    const handleEnd = (e: Event) => {
+      e.preventDefault();
+      setIsHoldingDelete(false);
+    };
+
+    button.addEventListener("touchstart", handleStart);
+    button.addEventListener("touchend", handleEnd);
+    button.addEventListener("touchcancel", handleEnd);
+    button.addEventListener("mousedown", handleStart);
+    button.addEventListener("mouseup", handleEnd);
+    button.addEventListener("mouseleave", handleEnd);
+
+    return () => {
+      button.removeEventListener("touchstart", handleStart);
+      button.removeEventListener("touchend", handleEnd);
+      button.removeEventListener("touchcancel", handleEnd);
+      button.removeEventListener("mousedown", handleStart);
+      button.removeEventListener("mouseup", handleEnd);
+      button.removeEventListener("mouseleave", handleEnd);
+    };
+  }, [activeRsvp]);
+
   async function handleDelete(id: number) {
     const { error } = await actions.deleteRsvp({ id });
 
@@ -62,7 +95,7 @@ export default function ResponsesTable({ rsvps: initialRsvps }: { rsvps: Rsvp[] 
   }
 
   function openDialog(rsvp: Rsvp) {
-    const dialog = document.getElementById("responses-dialog") as HTMLDialogElement;
+    const dialog = dialogRef.current;
 
     if (dialog) {
       setActiveRsvp(rsvp);
@@ -71,10 +104,9 @@ export default function ResponsesTable({ rsvps: initialRsvps }: { rsvps: Rsvp[] 
   }
 
   function closeDialog() {
-    const dialog = document.getElementById("responses-dialog") as HTMLDialogElement;
+    const dialog = dialogRef.current;
 
     if (dialog) {
-      setActiveRsvp(null);
       dialog.close();
     }
   }
@@ -88,8 +120,7 @@ export default function ResponsesTable({ rsvps: initialRsvps }: { rsvps: Rsvp[] 
   }
 
   return (
-    <div>
-      <p className="text-3xl text-center wght-600 mb-12">{totalAttending} guests attending</p>
+    <>
       <ul className="list bg-base-100 rounded-lg">
         {rsvps
           .sort((a, b) => b.created.getTime() - a.created.getTime())
@@ -158,10 +189,9 @@ export default function ResponsesTable({ rsvps: initialRsvps }: { rsvps: Rsvp[] 
             );
           })}
       </ul>
-      <dialog id="responses-dialog" className="modal">
+      <dialog id="responses-dialog" className="modal" ref={dialogRef}>
         <div className="modal-box rounded-md">
           <form method="dialog">
-            {/* if there is a button in form, it will close the modal */}
             <button className="btn btn-sm btn-square btn-ghost absolute right-2 top-2">✕</button>
           </form>
           {activeRsvp && (
@@ -181,43 +211,69 @@ export default function ResponsesTable({ rsvps: initialRsvps }: { rsvps: Rsvp[] 
               <div className="flex flex-col gap-4">
                 <div>
                   <label className="label">Email</label>
-                  <EditableInput
-                    value={activeRsvp.email}
-                    onChange={value => {
-                      updateRsvp(activeRsvp.id, { email: String(value) });
-                    }}
-                    type="email"
-                  />
+                  <div className="flex gap-1">
+                    <EditableInput
+                      value={activeRsvp.email}
+                      onChange={value => {
+                        updateRsvp(activeRsvp.id, { email: String(value) });
+                      }}
+                      type="email"
+                    />
+                    <a href={`mailto:${activeRsvp.email}`} className="btn btn-primary btn-square">
+                      <i className="ph-fill ph-envelope text-lg" />
+                    </a>
+                  </div>
                 </div>
                 <div>
                   <label className="label">Phone</label>
-                  <EditableInput
-                    value={activeRsvp.phone}
-                    onChange={value => {
-                      updateRsvp(activeRsvp.id, { phone: String(value) });
-                    }}
-                    type="phone"
-                  />
+                  <div className="flex gap-1">
+                    <EditableInput
+                      value={activeRsvp.phone}
+                      onChange={value => {
+                        updateRsvp(activeRsvp.id, { phone: String(value) });
+                      }}
+                      type="phone"
+                    />
+                    <a href={`tel:${activeRsvp.phone}`} className="btn btn-primary btn-square">
+                      <i className="ph-fill ph-phone text-lg" />
+                    </a>
+                  </div>
                 </div>
                 <div>
                   <label className="label">Additional guests</label>
                   <EditableInput
                     value={activeRsvp.numAdditionalGuests}
                     onChange={value => {
-                      updateRsvp(activeRsvp.id, { numAdditionalGuests: value ? Number(value) : 0 });
+                      updateRsvp(activeRsvp.id, {
+                        numAdditionalGuests: value ? Number(value) : 0,
+                      });
                     }}
                     type="number"
                   />
                 </div>
+                <div>
+                  <label className="label">Notes</label>
+                  <EditableInput
+                    value={activeRsvp.notes || ""}
+                    onChange={value => {
+                      updateRsvp(activeRsvp.id, { notes: String(value) });
+                    }}
+                    isTextArea
+                  />
+                </div>
                 <button
-                  className="btn btn-error mr-auto relative overflow-hidden"
-                  onPointerDown={() => setIsHoldingDelete(true)}
-                  onPointerUp={() => setIsHoldingDelete(false)}
-                  onPointerLeave={() => setIsHoldingDelete(false)}
+                  ref={deleteButtonRef}
+                  type="button"
+                  className="btn btn-error md:mr-auto relative overflow-hidden select-none"
+                  style={{
+                    WebkitTouchCallout: "none",
+                    WebkitUserSelect: "none",
+                    userSelect: "none",
+                  }}
                 >
                   {deleteProgress > 0 && (
                     <div
-                      className="absolute inset-0 bg-error transition-all duration-75"
+                      className="absolute inset-0 bg-red-700"
                       style={{ width: `${deleteProgress}%` }}
                     />
                   )}
@@ -233,6 +289,6 @@ export default function ResponsesTable({ rsvps: initialRsvps }: { rsvps: Rsvp[] 
           <button>close</button>
         </form>
       </dialog>
-    </div>
+    </>
   );
 }

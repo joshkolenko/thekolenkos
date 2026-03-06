@@ -63,10 +63,10 @@ export default function RsvpForm() {
 
   if (isSubmitted) {
     return (
-      <div className="text-center h-full flex flex-col items-center justify-center pt-12 pb-8">
-        <i className="ph-light ph-confetti text-8xl mb-4 text-base-content"></i>
-        <h2 className="text-3xl font-bold mb-2">You're all set!</h2>
-        <p className="text-lg">Thank you for taking the time to RSVP.</p>
+      <div className="flex flex-col h-full items-center justify-center gap-4 py-8">
+        <i className="ph-fill ph-confetti text-6xl opacity-50" />
+        <h2 className="text-3xl font-bold mb-2 opacity-70">You're all set!</h2>
+        <div className="text-lg opacity-70">Thank you for taking the time to RSVP.</div>
       </div>
     );
   }
