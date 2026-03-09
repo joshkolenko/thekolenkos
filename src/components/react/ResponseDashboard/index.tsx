@@ -78,7 +78,7 @@ export default function Responses({
           <div className="stat-value w-[3ch]">
             <input
               type="number"
-              className="outline-none hide-spin-buttons appearance-none"
+              className="outline-none hide-spin-buttons appearance-none w-full"
               value={numInvited}
               onChange={e => setNumInvited(e.target.value)}
             />

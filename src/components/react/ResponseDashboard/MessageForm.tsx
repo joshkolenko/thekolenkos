@@ -60,7 +60,7 @@ export default function MessageForm({ rsvps }: { rsvps: Rsvp[] }) {
         {recipients.length === 0 ? "Add recipients" : `Recipients (${recipients.length})`}
       </button>
       <dialog id="recipients-dialog" className="modal p-2">
-        <div className="modal-box rounded-md max-h-full max-w-full">
+        <div className="modal-box rounded-md max-h-full w-full">
           <form method="dialog">
             <button className="btn btn-sm btn-square btn-ghost absolute right-2 top-2">✕</button>
           </form>
